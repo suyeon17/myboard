@@ -19,7 +19,7 @@ public class TestBeanOne implements Serializable {
 	private String message;
 	
 	public TestBeanOne() {
-		this.message = "Hello, this is test!!!!";
+		this.message = "Hello, this is test!";
 	}
 
 	public String getMessage() {
