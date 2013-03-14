@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.AccountPermissions" table="Account_Permissions" catalog="myboard">
+        <id name="permissionId" type="int">
+            <column name="permission_id" />
+            <generator class="assigned" />
+        </id>
+        <property name="permissionName" type="string">
+            <column name="permission_name" length="20" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

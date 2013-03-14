@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <!-- Database connection settings -->
+        <property name="hibernate.connection.datasource">java:comp/env/jdbc/myboard</property>
+        <!-- SQL dialect -->
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.current_session_context_class">thread</property>
+        <!-- Disable the second-level cache  -->
+        <property name="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
+        <!-- Echo all executed SQL to stdout -->
+        <property name="hibernate.show_sql">true</property>
+        
+        <mapping resource="com/myboard/dao/CourseRoles.hbm.xml" />
+        <mapping resource="com/myboard/dao/AssignmentTypes.hbm.xml" />
+        <mapping resource="com/myboard/dao/Announcements.hbm.xml" />
+        <mapping resource="com/myboard/dao/CourseInfo.hbm.xml" />
+        <mapping resource="com/myboard/dao/AdditionalCalendarEntries.hbm.xml" />
+        <mapping resource="com/myboard/dao/AssignmentSubmission.hbm.xml" />
+        <mapping resource="com/myboard/dao/Courses.hbm.xml" />
+        <mapping resource="com/myboard/dao/AccountPermissions.hbm.xml" />
+        <mapping resource="com/myboard/dao/Message.hbm.xml" />
+        <mapping resource="com/myboard/dao/AdditionalGradeEntries.hbm.xml" />
+        <mapping resource="com/myboard/dao/CourseUsers.hbm.xml" />
+        <mapping resource="com/myboard/dao/CourseSection.hbm.xml" />
+        <mapping resource="com/myboard/dao/Department.hbm.xml" />
+        <mapping resource="com/myboard/dao/CourseMaterial.hbm.xml" />
+        <mapping resource="com/myboard/dao/Users.hbm.xml" />
+        <mapping resource="com/myboard/dao/Semester.hbm.xml" />
+        <mapping resource="com/myboard/dao/MessageRecipient.hbm.xml" />
+        <mapping resource="com/myboard/dao/Assignments.hbm.xml" />
+    </session-factory>
+</hibernate-configuration>

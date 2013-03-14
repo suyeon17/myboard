@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.Users" table="Users" catalog="myboard">
+        <id name="uid" type="string">
+            <column name="uid" length="8" />
+            <generator class="assigned" />
+        </id>
+        <property name="firstName" type="string">
+            <column name="first_name" length="35" not-null="true" />
+        </property>
+        <property name="lastName" type="string">
+            <column name="last_name" length="35" not-null="true" />
+        </property>
+        <property name="department" type="int">
+            <column name="department" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="20" not-null="true" />
+        </property>
+        <property name="permissionId" type="int">
+            <column name="permission_id" not-null="true" />
+        </property>
+        <property name="creationDate" type="timestamp">
+            <column name="creation_date" length="19" not-null="true" />
+        </property>
+        <property name="lastLogin" type="timestamp">
+            <column name="last_login" length="19" not-null="true" />
+        </property>
+        <property name="privateDirectory" type="string">
+            <column name="private_directory" length="45" not-null="true" />
+        </property>
+        <property name="active" type="boolean">
+            <column name="active" not-null="true" />
+        </property>
+        <property name="emailAddress" type="string">
+            <column name="email_address" length="45" />
+        </property>
+    </class>
+</hibernate-mapping>

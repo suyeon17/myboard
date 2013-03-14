@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.MessageRecipient" table="Message_Recipient" catalog="myboard">
+        <id name="messageRecipientId" type="java.lang.Integer">
+            <column name="message_recipient_id" />
+            <generator class="identity" />
+        </id>
+        <property name="messageId" type="int">
+            <column name="message_id" not-null="true" />
+        </property>
+        <property name="courseUid" type="int">
+            <column name="course_uid" not-null="true" />
+        </property>
+        <property name="deleted" type="boolean">
+            <column name="deleted" not-null="true" />
+        </property>
+        <property name="isNew" type="boolean">
+            <column name="is_new" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

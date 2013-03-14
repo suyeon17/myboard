@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.AssignmentSubmission" table="Assignment_Submission" catalog="myboard">
+        <id name="submissionId" type="java.lang.Integer">
+            <column name="submission_id" />
+            <generator class="identity" />
+        </id>
+        <property name="assignmentId" type="int">
+            <column name="assignment_id" not-null="true" />
+        </property>
+        <property name="courseUid" type="int">
+            <column name="course_uid" not-null="true" />
+        </property>
+        <property name="dateStarted" type="timestamp">
+            <column name="date_started" length="19" not-null="true" />
+        </property>
+        <property name="dateSubmitted" type="timestamp">
+            <column name="date_submitted" length="19" />
+        </property>
+        <property name="pointsEarned" type="java.lang.Integer">
+            <column name="points_earned" />
+        </property>
+        <property name="submissionFilename" type="string">
+            <column name="submission_filename" length="45" />
+        </property>
+        <property name="comments" type="string">
+            <column name="comments" length="16777215" />
+        </property>
+    </class>
+</hibernate-mapping>

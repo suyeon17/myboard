@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.CourseInfo" table="Course_Info" catalog="myboard">
+        <id name="courseInfoId" type="java.lang.Integer">
+            <column name="course_info_id" />
+            <generator class="identity" />
+        </id>
+        <property name="courseId" type="string">
+            <column name="course_id" length="10" not-null="true" />
+        </property>
+        <property name="courseName" type="string">
+            <column name="course_name" length="45" not-null="true" />
+        </property>
+        <property name="courseDescription" type="string">
+            <column name="course_description" length="16777215" not-null="true" />
+        </property>
+        <property name="department" type="int">
+            <column name="department" not-null="true" />
+        </property>
+        <property name="credits" type="int">
+            <column name="credits" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

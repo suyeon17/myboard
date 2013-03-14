@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.CourseMaterial" table="Course_Material" catalog="myboard">
+        <id name="courseMaterialId" type="java.lang.Integer">
+            <column name="course_material_id" />
+            <generator class="identity" />
+        </id>
+        <property name="title" type="string">
+            <column name="title" length="45" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="16777215" />
+        </property>
+        <property name="uploadDate" type="timestamp">
+            <column name="upload_date" length="19" not-null="true" />
+        </property>
+        <property name="creatorUid" type="int">
+            <column name="creator_uid" not-null="true" />
+        </property>
+        <property name="materialFilename" type="string">
+            <column name="material_filename" length="45" not-null="true" />
+        </property>
+        <property name="courseId" type="int">
+            <column name="course_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

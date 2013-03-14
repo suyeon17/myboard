@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.Assignments" table="Assignments" catalog="myboard">
+        <id name="assignmentId" type="java.lang.Integer">
+            <column name="assignment_id" />
+            <generator class="identity" />
+        </id>
+        <property name="courseId" type="int">
+            <column name="course_id" not-null="true" />
+        </property>
+        <property name="title" type="string">
+            <column name="title" length="45" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="16777215" not-null="true" />
+        </property>
+        <property name="totalPoints" type="int">
+            <column name="total_points" not-null="true" />
+        </property>
+        <property name="startDate" type="timestamp">
+            <column name="start_date" length="19" not-null="true" />
+        </property>
+        <property name="endDate" type="timestamp">
+            <column name="end_date" length="19" not-null="true" />
+        </property>
+        <property name="lateSubmissionDate" type="timestamp">
+            <column name="late_submission_date" length="19" />
+        </property>
+        <property name="timer" type="java.lang.Integer">
+            <column name="timer" />
+        </property>
+        <property name="numAttempts" type="int">
+            <column name="num_attempts" not-null="true" />
+        </property>
+        <property name="assignmentTypeId" type="int">
+            <column name="assignment_type_id" not-null="true" />
+        </property>
+        <property name="assignmentFilename" type="string">
+            <column name="assignment_filename" length="45" not-null="true" />
+        </property>
+        <property name="creatorUid" type="int">
+            <column name="creator_uid" not-null="true" />
+        </property>
+        <property name="visibleDate" type="timestamp">
+            <column name="visible_date" length="19" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

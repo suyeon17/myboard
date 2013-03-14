@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.myboard.dao.CourseUsers" table="Course_Users" catalog="myboard">
+        <id name="courseUid" type="java.lang.Integer">
+            <column name="course_uid" />
+            <generator class="identity" />
+        </id>
+        <property name="courseId" type="int">
+            <column name="course_id" not-null="true" />
+        </property>
+        <property name="uid" type="string">
+            <column name="uid" length="8" not-null="true" />
+        </property>
+        <property name="roleId" type="int">
+            <column name="role_id" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

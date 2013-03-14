@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    		<ui:define name="content">
+    			<h2>TestUserUpdate Page</h2>
+    			<f:view>
+    			    <h:form>
+    			        <h:panelGrid columns="1">
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="UserId: "/>
+			                    <h:inputText id="createuserid" value="#{testUserBean.userId}" required="true" size="8" maxlength="8"/> 
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+			                    <h:commandButton action="#{testUserBean.updateUser}" value="Update User" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="Password: "/>
+			                    <h:inputText id="createpwd" value="#{testUserBean.password}" size="20" maxlength="20"/> 
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="FirstName: "/>
+			                    <h:inputText id="createfirstName" value="#{testUserBean.firstName}" size="35" maxlength="35"/> 
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="LastName: "/>
+			                    <h:inputText id="createlastName" value="#{testUserBean.lastName}" size="35" maxlength="35"/> 
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="Email: "/>
+			                    <h:inputText id="createemail" value="#{testUserBean.email}" size="45" maxlength="45"/> 
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="Select Department: "/>
+						        <h:selectOneRadio value="#{testUserBean.department}">
+						 			<f:selectItem itemValue="NO_ASSOCIATION" itemLabel="No Association" />
+						 			<f:selectItem itemValue="COMPUTER_SCIENCE" itemLabel="Computer Science" />
+						 			<f:selectItem itemValue="MATHEMATICS" itemLabel="Mathematics" />
+						 		</h:selectOneRadio>
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createCSUser" value="Select Permissions: "/>
+						        <h:selectOneRadio value="#{testUserBean.permissionId}">
+						 			<f:selectItem itemValue="ADMINISTRATOR" itemLabel="Administrator" />
+						 			<f:selectItem itemValue="DEPARTMENT_ADMINISTRATOR" itemLabel="Department Administrator" />
+						 			<f:selectItem itemValue="FACULTY" itemLabel="Faculty" />
+						 			<f:selectItem itemValue="REGULAR_USER" itemLabel="Regular User" />
+						 		</h:selectOneRadio>
+			                    <t:message for="createCSUser" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+
+  			             </h:panelGrid>
+
+    			        <h:outputText value="&lt;br/&gt;" escape="false" />
+    			        <h:link value="Take me to TestUser Page" outcome="testUser" />
+    			    </h:form>
+    			</f:view>
+    		</ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+    
+</html>
