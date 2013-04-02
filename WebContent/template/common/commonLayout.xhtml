@@ -11,29 +11,31 @@
 	</h:head>
     
     <h:body>
-
-	<div id="page">
-		
-		<div id="header">
-			<ui:insert name="header" >
-				<ui:include src="/template/common/commonHeader.xhtml" />
-			</ui:insert>
-	    </div>
-	    
-	    <div id="content">
-		   	<ui:insert name="content" >
-		   		<ui:include src="/template/common/commonContent.xhtml" />
-		   	</ui:insert>
-	    </div>
+    	<div id="wrapper">
+			<div id="header">
+				<ui:insert name="header" >
+					<ui:include src="/template/common/commonHeader.xhtml" />
+				</ui:insert>
+		    </div>
 		    
-	    <div id="footer">
-	    	<ui:insert name="footer" >
-	    		<ui:include src="/template/common/commonFooter.xhtml" />
-	    	</ui:insert>
+		    <div id="page">
+		    	<div id="content">
+			   		<ui:insert name="content" >
+			   			<ui:include src="/template/common/commonContent.xhtml" />
+			   		</ui:insert>
+		    	</div>
+		    	<div id="sidebar">
+		    	    <ui:insert name="sidebar" >
+			   			<ui:include src="/template/common/commonSidebar.xhtml" />
+			   		</ui:insert>
+		    	</div>
+			</div>
+			   
+		    <div id="footer">
+		    	<ui:insert name="footer" >
+		    		<ui:include src="/template/common/commonFooter.xhtml" />
+		    	</ui:insert>
+	    	</div>
     	</div>
-    	
-    </div>
-    
     </h:body>
-
 </html>
