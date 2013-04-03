@@ -19,7 +19,31 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     
+    <managed-bean>
+	    <managed-bean-name>userSession</managed-bean-name>
+	    <managed-bean-class>com.myboard.business.UserSession</managed-bean-class>
+	    <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>loginBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.LoginBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>userSession</property-name>
+            <value>#{userSession}</value>
+        </managed-property>
+    </managed-bean>
+    
     <!-- ************** Navigation Rules ************** -->
+        <navigation-rule>
+        <from-view-id>/loginPage.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>OK</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
     <!-- TestUser Pages -->
     <navigation-rule>
         <from-view-id>/testUser.xhtml</from-view-id>
