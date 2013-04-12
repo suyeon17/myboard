@@ -8,9 +8,9 @@
             <column name="assignment_id" />
             <generator class="identity" />
         </id>
-        <property name="courseId" type="int">
-            <column name="course_id" not-null="true" />
-        </property>
+		<many-to-one name="course" class="com.myboard.dao.Courses" fetch="select">
+			<column name="course_id" not-null="true" />
+		</many-to-one>
         <property name="title" type="string">
             <column name="title" length="45" not-null="true" />
         </property>
@@ -35,17 +35,23 @@
         <property name="numAttempts" type="int">
             <column name="num_attempts" not-null="true" />
         </property>
-        <property name="assignmentTypeId" type="int">
-            <column name="assignment_type_id" not-null="true" />
-        </property>
+		<many-to-one name="assignmentType" class="com.myboard.dao.AssignmentTypes" fetch="select">
+			<column name="assignment_type_id" not-null="true" />
+		</many-to-one>
         <property name="assignmentFilename" type="string">
             <column name="assignment_filename" length="45" not-null="true" />
         </property>
-        <property name="creatorUid" type="int">
-            <column name="creator_uid" not-null="true" />
-        </property>
+		<many-to-one name="creator" class="com.myboard.dao.CourseUsers" fetch="select">
+			<column name="creator_uid" not-null="true" />
+		</many-to-one>
         <property name="visibleDate" type="timestamp">
             <column name="visible_date" length="19" not-null="true" />
         </property>
+		<set name="assignmentSubmissions" table="Assignment_Submission" inverse="true" lazy="true" fetch="select">
+			<key>
+				<column name="assignment_id" not-null="true" />
+			</key>
+			<one-to-many class="com.myboard.dao.AssignmentSubmission" />
+		</set>
     </class>
 </hibernate-mapping>

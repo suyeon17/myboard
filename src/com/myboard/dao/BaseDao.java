@@ -1,5 +1,7 @@
 package com.myboard.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Session;
@@ -22,8 +24,9 @@ public class BaseDao {
 			return new Configuration().configure().buildSessionFactory();
 		} catch (Exception e) {
 			log.error("Could not locate SessionFactory in JNDI", e);
+			e.printStackTrace();
 			throw new IllegalStateException(
-					"Could not locate SessionFactory in JNDI");
+					"Could not locate SessionFactory in JNDI ");
 		}
 	}
 	
@@ -59,6 +62,30 @@ public class BaseDao {
 			
 			if(instance == null){
 				throw new EntityNotFoundException(entityClassFullName + " not found for id = " + id);
+			}
+			
+			return instance;
+		} catch (RuntimeException re) {
+			if(transaction != null){transaction.rollback();}
+			throw re;
+		}finally{
+			if(session != null && session.isOpen()){session.close();}
+		}
+	}
+
+	public List<?> readAll(String entityClassFullName, Object o) throws EntityNotFoundException{
+		Session session = null;
+		Transaction transaction = null;
+		
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			transaction = session.beginTransaction();
+			List<?> instance = session.createCriteria(entityClassFullName)
+							.add(org.hibernate.criterion.Example.create(o)).list();
+			transaction.commit();
+			
+			if(instance == null){
+				throw new EntityNotFoundException(entityClassFullName + " not found");
 			}
 			
 			return instance;

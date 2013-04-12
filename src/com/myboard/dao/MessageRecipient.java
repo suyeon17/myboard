@@ -7,23 +7,25 @@ package com.myboard.dao;
  */
 public class MessageRecipient implements java.io.Serializable {
 
+	private static final long serialVersionUID = 2298710433170661934L;
+
 	private Integer messageRecipientId;
-	private int messageId;
-	private int courseUid;
+	private Message message;
+	private CourseUsers recipient;
 	private boolean deleted;
 	private boolean isNew;
 
 	public MessageRecipient() {
 	}
 
-	public MessageRecipient(int messageId, int courseUid, boolean deleted,
-			boolean isNew) {
-		this.messageId = messageId;
-		this.courseUid = courseUid;
+	public MessageRecipient(Message message, CourseUsers recipient,
+			boolean deleted, boolean isNew) {
+		this.message = message;
+		this.recipient = recipient;
 		this.deleted = deleted;
 		this.isNew = isNew;
 	}
-
+	
 	public Integer getMessageRecipientId() {
 		return this.messageRecipientId;
 	}
@@ -32,22 +34,22 @@ public class MessageRecipient implements java.io.Serializable {
 		this.messageRecipientId = messageRecipientId;
 	}
 
-	public int getMessageId() {
-		return this.messageId;
+	public Message getMessage() {
+		return this.message;
 	}
 
-	public void setMessageId(int messageId) {
-		this.messageId = messageId;
+	public void setMessage(Message message) {
+		this.message = message;
 	}
 
-	public int getCourseUid() {
-		return this.courseUid;
+	public CourseUsers getRecipient() {
+		return this.recipient;
 	}
 
-	public void setCourseUid(int courseUid) {
-		this.courseUid = courseUid;
+	public void setRecipient(CourseUsers recipient) {
+		this.recipient = recipient;
 	}
-
+	
 	public boolean isDeleted() {
 		return this.deleted;
 	}
@@ -63,5 +65,4 @@ public class MessageRecipient implements java.io.Serializable {
 	public void setIsNew(boolean isNew) {
 		this.isNew = isNew;
 	}
-
 }

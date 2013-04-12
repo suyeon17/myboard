@@ -14,15 +14,15 @@
         <property name="lastName" type="string">
             <column name="last_name" length="35" not-null="true" />
         </property>
-        <property name="department" type="int">
+		<many-to-one name="department" class="com.myboard.dao.Department" fetch="select">
             <column name="department" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="password" type="string">
             <column name="password" length="20" not-null="true" />
         </property>
-        <property name="permissionId" type="int">
+		<many-to-one name="permission" class="com.myboard.dao.AccountPermissions" fetch="select">
             <column name="permission_id" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="creationDate" type="timestamp">
             <column name="creation_date" length="19" not-null="true" />
         </property>
@@ -38,5 +38,17 @@
         <property name="emailAddress" type="string">
             <column name="email_address" length="45" />
         </property>
+		<set name="courseUsers" table="Course_Users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uid" length="8" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.CourseUsers" />
+        </set>
+        <set name="additionalCalendarEntries" table="Additional_Calendar_Entries" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="uid" length="8" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.AdditionalCalendarEntries" />
+        </set>
     </class>
 </hibernate-mapping>

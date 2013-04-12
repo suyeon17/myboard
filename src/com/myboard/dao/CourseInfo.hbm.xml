@@ -16,12 +16,18 @@
         </property>
         <property name="courseDescription" type="string">
             <column name="course_description" length="16777215" not-null="true" />
-        </property>
-        <property name="department" type="int">
+        </property>   
+        <many-to-one name="department" class="com.myboard.dao.Department" fetch="select">
             <column name="department" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="credits" type="int">
             <column name="credits" not-null="true" />
         </property>
+        <set name="courseSections" table="Course_Section" inverse="true" lazy="true" fetch="select">
+           <key>
+               <column name="course_info_id" not-null="true" />
+           </key>
+           <one-to-many class="com.myboard.dao.CourseSection" />
+       	</set>
     </class>
 </hibernate-mapping>

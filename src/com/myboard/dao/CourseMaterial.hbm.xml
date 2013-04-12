@@ -17,14 +17,14 @@
         <property name="uploadDate" type="timestamp">
             <column name="upload_date" length="19" not-null="true" />
         </property>
-        <property name="creatorUid" type="int">
+        <many-to-one name="creator" class="com.myboard.dao.CourseUsers" fetch="select">
             <column name="creator_uid" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="materialFilename" type="string">
             <column name="material_filename" length="45" not-null="true" />
         </property>
-        <property name="courseId" type="int">
-            <column name="course_id" not-null="true" />
-        </property>
+		<many-to-one name="course" class="com.myboard.dao.Courses" fetch="select">
+			<column name="course_id" not-null="true" />
+		</many-to-one> 
     </class>
 </hibernate-mapping>

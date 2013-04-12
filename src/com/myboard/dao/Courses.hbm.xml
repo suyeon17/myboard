@@ -8,14 +8,44 @@
             <column name="course_id" />
             <generator class="identity" />
         </id>
-        <property name="courseSectionId" type="int">
+        <many-to-one name="section" class="com.myboard.dao.CourseSection" fetch="select">
             <column name="course_section_id" not-null="true" />
-        </property>
-        <property name="courseSemesterId" type="int">
+        </many-to-one>
+		<many-to-one name="semester" class="com.myboard.dao.Semester" fetch="select">
             <column name="course_semester_id" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="courseRootDirectory" type="string">
             <column name="course_root_directory" length="45" not-null="true" />
         </property>
+        <set name="materials" table="Course_Material" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.CourseMaterial" />
+        </set>
+        <set name="announcements" table="Announcements" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.Announcements" />
+        </set>
+        <set name="users" table="Course_Users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.CourseUsers" />
+        </set>
+        <set name="messages" table="Message" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.Message" />
+        </set>
+        <set name="assignments" table="Assignments" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.Assignments" />
+        </set>
     </class>
 </hibernate-mapping>

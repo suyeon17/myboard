@@ -11,5 +11,11 @@
         <property name="permissionName" type="string">
             <column name="permission_name" length="20" not-null="true" />
         </property>
+        <set name="users" table="Users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="permission_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.Users" />
+        </set>
     </class>
 </hibernate-mapping>

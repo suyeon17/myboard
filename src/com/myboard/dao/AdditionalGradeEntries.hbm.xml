@@ -8,9 +8,9 @@
             <column name="entry_id" />
             <generator class="identity" />
         </id>
-        <property name="courseUid" type="int">
-            <column name="course_uid" not-null="true" />
-        </property>
+		<many-to-one name="courseUser" class="com.myboard.dao.CourseUsers" fetch="select">
+			<column name="course_uid" not-null="true" />
+		</many-to-one>   
         <property name="pointsEarned" type="java.lang.Integer">
             <column name="points_earned" />
         </property>
@@ -22,9 +22,9 @@
         </property>
         <property name="comments" type="string">
             <column name="comments" length="16777215" />
-        </property>
-        <property name="createdBy" type="int">
-            <column name="created_by" not-null="true" />
-        </property>
+        </property> 
+		<many-to-one name="createdBy" class="com.myboard.dao.CourseUsers" fetch="select">
+    		<column name="created_by" not-null="true" />
+		</many-to-one>
     </class>
 </hibernate-mapping>

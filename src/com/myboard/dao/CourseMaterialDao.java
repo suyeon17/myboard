@@ -1,5 +1,7 @@
 package com.myboard.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -42,6 +44,23 @@ public class CourseMaterialDao extends BaseDao {
 		return instance;
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<CourseMaterial> readAll(CourseMaterial instance) {
+		log.debug("readAll " + entitySimpleName);
+		List<CourseMaterial> result = null;
+		
+		try {
+			result = (List<CourseMaterial>)super.readAll(entityFullName, instance);
+			log.debug(entitySimpleName + " readAll successful, instance found");
+		} catch(EntityNotFoundException ex){
+			log.error(entitySimpleName + " readAll successful, no instance found", ex);
+		} catch (RuntimeException re) {
+			log.error(entitySimpleName + " readAll failed", re);
+			throw re;
+		}
+		return result;
+	}
+	
 	public void update(CourseMaterial instance) {
 		log.debug("updating " + entitySimpleName + " instance");
 

@@ -1,5 +1,8 @@
 package com.myboard.dao;
 
+import java.util.HashSet;
+import java.util.Set;
+
 // Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0
 
 /**
@@ -7,18 +10,28 @@ package com.myboard.dao;
  */
 public class CourseSection implements java.io.Serializable {
 
+	private static final long serialVersionUID = -9051594078880063185L;
+
 	private Integer courseSectionId;
-	private int courseInfoId;
+	private CourseInfo courseInfo;
 	private int section;
+	private Set<Courses> courses = new HashSet<Courses>(0);
 
 	public CourseSection() {
 	}
 
-	public CourseSection(int courseInfoId, int section) {
-		this.courseInfoId = courseInfoId;
+	public CourseSection(CourseInfo courseInfo, int section) {
+		this.courseInfo = courseInfo;
 		this.section = section;
 	}
 
+	public CourseSection(CourseInfo courseInfo, int section,
+			Set<Courses> courses) {
+		this.courseInfo = courseInfo;
+		this.section = section;
+		this.courses = courses;
+	}
+	
 	public Integer getCourseSectionId() {
 		return this.courseSectionId;
 	}
@@ -27,14 +40,14 @@ public class CourseSection implements java.io.Serializable {
 		this.courseSectionId = courseSectionId;
 	}
 
-	public int getCourseInfoId() {
-		return this.courseInfoId;
+	public CourseInfo getCourseInfo() {
+		return this.courseInfo;
 	}
 
-	public void setCourseInfoId(int courseInfoId) {
-		this.courseInfoId = courseInfoId;
+	public void setCourseInfo(CourseInfo courseInfo) {
+		this.courseInfo = courseInfo;
 	}
-
+	
 	public int getSection() {
 		return this.section;
 	}
@@ -43,4 +56,11 @@ public class CourseSection implements java.io.Serializable {
 		this.section = section;
 	}
 
+	public Set<Courses> getCourses() {
+		return this.courses;
+	}
+
+	public void setCourses(Set<Courses> courses) {
+		this.courses = courses;
+	}
 }

@@ -9,36 +9,38 @@ import java.util.Date;
  */
 public class CourseMaterial implements java.io.Serializable {
 
+	private static final long serialVersionUID = 7559627526224071501L;
+
 	private Integer courseMaterialId;
 	private String title;
 	private String description;
 	private Date uploadDate;
-	private int creatorUid;
+	private CourseUsers creator;
 	private String materialFilename;
-	private int courseId;
+	private Courses course;
 
 	public CourseMaterial() {
 	}
 
-	public CourseMaterial(String title, Date uploadDate, int creatorUid,
-			String materialFilename, int courseId) {
+	public CourseMaterial(String title, Date uploadDate, CourseUsers creator,
+			String materialFilename, Courses course) {
+		this.course = course;
+		this.creator = creator;
 		this.title = title;
 		this.uploadDate = uploadDate;
-		this.creatorUid = creatorUid;
 		this.materialFilename = materialFilename;
-		this.courseId = courseId;
 	}
 
 	public CourseMaterial(String title, String description, Date uploadDate,
-			int creatorUid, String materialFilename, int courseId) {
+			CourseUsers creator, String materialFilename, Courses course) {
+		this.course = course;
+		this.creator = creator;
 		this.title = title;
 		this.description = description;
 		this.uploadDate = uploadDate;
-		this.creatorUid = creatorUid;
 		this.materialFilename = materialFilename;
-		this.courseId = courseId;
 	}
-
+	
 	public Integer getCourseMaterialId() {
 		return this.courseMaterialId;
 	}
@@ -71,14 +73,14 @@ public class CourseMaterial implements java.io.Serializable {
 		this.uploadDate = uploadDate;
 	}
 
-	public int getCreatorUid() {
-		return this.creatorUid;
+	public CourseUsers getCreator() {
+		return this.creator;
 	}
 
-	public void setCreatorUid(int creatorUid) {
-		this.creatorUid = creatorUid;
+	public void setCreator(CourseUsers creator) {
+		this.creator = creator;
 	}
-
+	
 	public String getMaterialFilename() {
 		return this.materialFilename;
 	}
@@ -87,12 +89,11 @@ public class CourseMaterial implements java.io.Serializable {
 		this.materialFilename = materialFilename;
 	}
 
-	public int getCourseId() {
-		return this.courseId;
+	public Courses getCourse() {
+		return this.course;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setCourse(Courses course) {
+		this.course = course;
 	}
-
 }

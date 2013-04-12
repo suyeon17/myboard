@@ -11,5 +11,11 @@
         <property name="roleName" type="string">
             <column name="role_name" length="20" not-null="true" />
         </property>
+		<set name="users" table="Course_Users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="role_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.CourseUsers" />
+        </set>
     </class>
 </hibernate-mapping>

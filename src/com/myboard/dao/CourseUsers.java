@@ -1,5 +1,8 @@
 package com.myboard.dao;
 
+import java.util.HashSet;
+import java.util.Set;
+
 // Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0
 
 /**
@@ -7,18 +10,53 @@ package com.myboard.dao;
  */
 public class CourseUsers implements java.io.Serializable {
 
-	private Integer courseUid;
-	private int courseId;
-	private String uid;
-	private int roleId;
+	private static final long serialVersionUID = -6902433651142177737L;
 
+	private Integer courseUid;
+	private CourseRoles role;
+	private Courses course;
+	private Users user;
+	private Set<CourseMaterial> materials = new HashSet<CourseMaterial>(0);
+	private Set<MessageRecipient> messageRecipients = new HashSet<MessageRecipient>(
+			0);
+	private Set<AssignmentSubmission> assignmentSubmissions = new HashSet<AssignmentSubmission>(
+			0);
+	private Set<Announcements> announcements = new HashSet<Announcements>(0);
+	private Set<Message> messages = new HashSet<Message>(0);
+	private Set<AdditionalGradeEntries> additionalGradeEntries = new HashSet<AdditionalGradeEntries>(
+			0);
+	private Set<Assignments> assignments = new HashSet<Assignments>(0);
+	private Set<AdditionalGradeEntries> additionalGradeEntriesCreated = new HashSet<AdditionalGradeEntries>(
+			0);
+	
 	public CourseUsers() {
 	}
 
-	public CourseUsers(int courseId, String uid, int roleId) {
-		this.courseId = courseId;
-		this.uid = uid;
-		this.roleId = roleId;
+	public CourseUsers(CourseRoles role, Courses course, Users user) {
+		this.role = role;
+		this.course = course;
+		this.user = user;
+	}
+
+	public CourseUsers(CourseRoles role, Courses course, Users user,
+			Set<CourseMaterial> materials,
+			Set<MessageRecipient> messageRecipients,
+			Set<AssignmentSubmission> assignmentSubmissions,
+			Set<Announcements> announcements, Set<Message> messages,
+			Set<AdditionalGradeEntries> additionalGradeEntries,
+			Set<Assignments> assignments,
+			Set<AdditionalGradeEntries> additionalGradeEntriesCreated) {
+		this.role = role;
+		this.course = course;
+		this.user = user;
+		this.materials = materials;
+		this.messageRecipients = messageRecipients;
+		this.assignmentSubmissions = assignmentSubmissions;
+		this.announcements = announcements;
+		this.messages = messages;
+		this.additionalGradeEntries = additionalGradeEntries;
+		this.assignments = assignments;
+		this.additionalGradeEntriesCreated = additionalGradeEntriesCreated;
 	}
 
 	public Integer getCourseUid() {
@@ -29,28 +67,95 @@ public class CourseUsers implements java.io.Serializable {
 		this.courseUid = courseUid;
 	}
 
-	public int getCourseId() {
-		return this.courseId;
+	public CourseRoles getRole() {
+		return this.role;
 	}
 
-	public void setCourseId(int courseId) {
-		this.courseId = courseId;
+	public void setRole(CourseRoles role) {
+		this.role = role;
 	}
 
-	public String getUid() {
-		return this.uid;
+	public Courses getCourse() {
+		return this.course;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setCourse(Courses course) {
+		this.course = course;
 	}
 
-	public int getRoleId() {
-		return this.roleId;
+	public Users getUser() {
+		return this.user;
 	}
 
-	public void setRoleId(int roleId) {
-		this.roleId = roleId;
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public Set<CourseMaterial> getMaterials() {
+		return this.materials;
+	}
+
+	public void setMaterials(Set<CourseMaterial> materials) {
+		this.materials = materials;
+	}
+
+	public Set<MessageRecipient> getMessageRecipients() {
+		return this.messageRecipients;
+	}
+
+	public void setMessageRecipients(Set<MessageRecipient> messageRecipients) {
+		this.messageRecipients = messageRecipients;
+	}
+
+	public Set<AssignmentSubmission> getAssignmentSubmissions() {
+		return this.assignmentSubmissions;
+	}
+
+	public void setAssignmentSubmissions(
+			Set<AssignmentSubmission> assignmentSubmissions) {
+		this.assignmentSubmissions = assignmentSubmissions;
+	}
+
+	public Set<Announcements> getAnnouncements() {
+		return this.announcements;
+	}
+
+	public void setAnnouncements(Set<Announcements> announcements) {
+		this.announcements = announcements;
+	}
+
+	public Set<Message> getMessages() {
+		return this.messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
+
+	public Set<AdditionalGradeEntries> getAdditionalGradeEntries() {
+		return this.additionalGradeEntries;
+	}
+
+	public void setAdditionalGradeEntries(
+			Set<AdditionalGradeEntries> additionalGradeEntries) {
+		this.additionalGradeEntries = additionalGradeEntries;
+	}
+
+	public Set<Assignments> getAssignments() {
+		return this.assignments;
+	}
+
+	public void setAssignments(Set<Assignments> assignments) {
+		this.assignments = assignments;
+	}
+
+	public Set<AdditionalGradeEntries> getAdditionalGradeEntriesCreated() {
+		return this.additionalGradeEntriesCreated;
+	}
+
+	public void setAdditionalGradeEntriesCreated(
+			Set<AdditionalGradeEntries> additionalGradeEntriesCreated) {
+		this.additionalGradeEntriesCreated = additionalGradeEntriesCreated;
 	}
 
 }

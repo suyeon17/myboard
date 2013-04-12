@@ -17,5 +17,11 @@
         <property name="endDate" type="timestamp">
             <column name="end_date" length="19" not-null="true" />
         </property>
+		<set name="courses" table="Courses" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="course_semester_id" not-null="true" />
+            </key>
+            <one-to-many class="com.myboard.dao.Courses" />
+        </set>
     </class>
 </hibernate-mapping>

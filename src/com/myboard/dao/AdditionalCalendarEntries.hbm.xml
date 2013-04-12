@@ -8,9 +8,9 @@
             <column name="entry_id" />
             <generator class="identity" />
         </id>
-        <property name="uid" type="string">
+   		<many-to-one name="user" class="com.myboard.dao.Users" fetch="select">
             <column name="uid" length="8" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="title" type="string">
             <column name="title" length="45" not-null="true" />
         </property>

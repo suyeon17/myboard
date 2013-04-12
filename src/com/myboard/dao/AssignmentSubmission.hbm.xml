@@ -8,12 +8,12 @@
             <column name="submission_id" />
             <generator class="identity" />
         </id>
-        <property name="assignmentId" type="int">
-            <column name="assignment_id" not-null="true" />
-        </property>
-        <property name="courseUid" type="int">
-            <column name="course_uid" not-null="true" />
-        </property>
+		<many-to-one name="assignment" class="com.myboard.dao.Assignments" fetch="select">
+			<column name="assignment_id" not-null="true" />
+		</many-to-one>
+		<many-to-one name="user" class="com.myboard.dao.CourseUsers" fetch="select">
+			<column name="course_uid" not-null="true" />
+		</many-to-one>
         <property name="dateStarted" type="timestamp">
             <column name="date_started" length="19" not-null="true" />
         </property>

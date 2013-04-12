@@ -1,5 +1,7 @@
 package com.myboard.dao;
 
+import java.util.List;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -40,6 +42,23 @@ public class AssignmentSubmissionDao extends BaseDao{
 			throw re;
 		}
 		return instance;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<AssignmentSubmission> readAll(AssignmentSubmission instance) {
+		log.debug("readAll " + entitySimpleName);
+		List<AssignmentSubmission> result = null;
+							
+		try {
+			result = (List<AssignmentSubmission>)super.readAll(entityFullName, instance);
+			log.debug(entitySimpleName + " readAll successful, instance found");
+		} catch(EntityNotFoundException ex){
+			log.error(entitySimpleName + " readAll successful, no instance found", ex);
+		} catch (RuntimeException re) {
+			log.error(entitySimpleName + " readAll failed", re);
+			throw re;
+		}
+		return result;
 	}
 
 	public void update(AssignmentSubmission instance) {

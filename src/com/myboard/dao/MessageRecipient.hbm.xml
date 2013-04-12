@@ -8,12 +8,12 @@
             <column name="message_recipient_id" />
             <generator class="identity" />
         </id>
-        <property name="messageId" type="int">
+        <many-to-one name="message" class="com.myboard.dao.Message" fetch="select">
             <column name="message_id" not-null="true" />
-        </property>
-        <property name="courseUid" type="int">
+        </many-to-one>
+        <many-to-one name="recipient" class="com.myboard.dao.CourseUsers" fetch="select">
             <column name="course_uid" not-null="true" />
-        </property>
+        </many-to-one>
         <property name="deleted" type="boolean">
             <column name="deleted" not-null="true" />
         </property>

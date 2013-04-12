@@ -11,5 +11,11 @@
         <property name="assignmentTypeName" type="string">
             <column name="assignment_type_name" length="45" />
         </property>
+		<set name="assignments" table="Assignments" inverse="true" lazy="true" fetch="select">
+			<key>
+                <column name="assignment_type_id" not-null="true" />
+            </key>
+			<one-to-many class="com.myboard.dao.Assignments" />
+		</set>
     </class>
 </hibernate-mapping>

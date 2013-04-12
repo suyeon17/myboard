@@ -9,18 +9,20 @@ import java.util.Date;
  */
 public class AdditionalCalendarEntries implements java.io.Serializable {
 
+	private static final long serialVersionUID = 6177932439424185060L;
+
 	private Integer entryId;
-	private String uid;
+	private Users user;
 	private String title;
 	private String description;
 	private Date date;
 
 	public AdditionalCalendarEntries() {
 	}
-
-	public AdditionalCalendarEntries(String uid, String title,
+	
+	public AdditionalCalendarEntries(Users user, String title,
 			String description, Date date) {
-		this.uid = uid;
+		this.user = user;
 		this.title = title;
 		this.description = description;
 		this.date = date;
@@ -34,14 +36,14 @@ public class AdditionalCalendarEntries implements java.io.Serializable {
 		this.entryId = entryId;
 	}
 
-	public String getUid() {
-		return this.uid;
+	public Users getUser() {
+		return this.user;
 	}
 
-	public void setUid(String uid) {
-		this.uid = uid;
+	public void setUser(Users user) {
+		this.user = user;
 	}
-
+	
 	public String getTitle() {
 		return this.title;
 	}
