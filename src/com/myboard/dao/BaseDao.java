@@ -109,7 +109,7 @@ public class BaseDao {
 		} catch (RuntimeException re) {
 			if(transaction != null){transaction.rollback();}
 			throw re;
-		}finally{
+		}finally {
 			if(session != null && session.isOpen()){session.close();}
 		}
 	}
