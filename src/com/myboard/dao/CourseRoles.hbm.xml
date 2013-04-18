@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.myboard.dao.CourseRoles" table="Course_Roles" catalog="myboard">
+    <class name="com.myboard.dao.CourseRoles" table="Course_Roles" catalog="myboard" lazy="false">
         <id name="roleId" type="int">
             <column name="role_id" />
             <generator class="assigned" />

@@ -86,7 +86,7 @@ public class Material {
 	public List<?> readAllMaterial(){
 		CourseMaterialDao dao = new CourseMaterialDao();
 		//CourseMaterial cm = dao.read(this.creator.getCourseUid());
-		List<?> cmL = dao.readAll(new CourseMaterial());
+		List<?> cmL = dao.readAll();
 		
 		return cmL;
 	}

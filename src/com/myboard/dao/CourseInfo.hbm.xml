@@ -3,7 +3,7 @@
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="com.myboard.dao.CourseInfo" table="Course_Info" catalog="myboard">
+    <class name="com.myboard.dao.CourseInfo" table="Course_Info" catalog="myboard" lazy="false">
         <id name="courseInfoId" type="java.lang.Integer">
             <column name="course_info_id" />
             <generator class="identity" />

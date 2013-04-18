@@ -45,7 +45,16 @@ public class MaterialTeacherBean implements Serializable {
 	private int course;
 	UserSession userSession;
 	Courses c;
-	
+	  ArrayList<String[]> dataList = new ArrayList<String[]>();
+
+	public ArrayList<String[]> getDataList() {
+		return dataList;
+	}
+
+	public void setDataList(ArrayList<String[]> dataList) {
+		this.dataList = dataList;
+	}
+
 	CourseUsers cu;
 	
 	private UploadedFile upFile;
@@ -55,35 +64,37 @@ public class MaterialTeacherBean implements Serializable {
 		c = new Courses();
 		cu = new CourseUsers();
 		
-		c.setCourseId(2);
-		cu.setCourseUid(2);
+		c.setCourseId(1);
+		cu.setCourseUid(4);
 		
 		setCourse(c);
-		setCreator(cu);
-		
+		setCreator(cu);		
 	}
 	
 	// Read database for user's course materials
-	public String findFiles() {
-		
-		Material  mat = new Material(cu);
-		mat.readMaterial();
-		
-		this.course = mat.getCourse().getCourseId();
-		this.courseMaterialId = mat.getCourseMaterialId();
-	    this.creator = mat.getCreator().getCourseUid();
-		this.description = mat.getDescription();
-		this.title = mat.getTitle();
-		this.materialFilename = mat.getMaterialFilename();
-		this.uploadDate = mat.getUploadDate();
-
-		return "returnFiles";
-	}
-	
-	public String getList() {
+	public void getList() {
 		  
 		   Material mat = new Material(cu);
-		  return mat.readAllMaterial().get(0).toString();
+		   List<?> l = mat.readAllMaterial();
+		 
+
+		   for(int i=0; i<l.size(); i++){
+			 String row[] = new String[7];
+		   CourseMaterial c = (CourseMaterial) l.get(i);
+		   
+		   if(c.getCreator().getCourseUid().equals(getCreator())){
+		   row[0] = c.getCourseMaterialId().toString();
+		   row[1] = c.getTitle();
+		   row[2] = c.getDescription();
+		   row[3] = c.getUploadDate().toString();
+		   row[4] = c.getCreator().getCourseUid().toString();
+		   row[5] = c.getMaterialFilename();
+		   row[6] = c.getCourse().getCourseId().toString();
+
+		   dataList.add(row);
+		   }
+		   }
+
 		}
 
 	// Go to upload page

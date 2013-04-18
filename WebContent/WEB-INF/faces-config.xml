@@ -86,11 +86,4 @@
             <to-view-id>/uploadFile.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-     <navigation-rule>
-        <from-view-id>/courseMaterialTeacher.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>returnFiles</from-outcome>
-            <to-view-id>/courseMaterialTeacher.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
 </faces-config>
