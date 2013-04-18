@@ -72,6 +72,29 @@ public class BaseDao {
 			if(session != null && session.isOpen()){session.close();}
 		}
 	}
+	
+	public Object read(String entityClassFullName, int id) throws EntityNotFoundException{		
+		Session session = null;
+		Transaction transaction = null;
+		
+		try {
+			session = this.sessionFactory.getCurrentSession();
+			transaction = session.beginTransaction();
+			Object instance = session.get(entityClassFullName, id);
+			transaction.commit();
+			
+			if(instance == null){
+				throw new EntityNotFoundException(entityClassFullName + " not found for id = " + id);
+			}
+			
+			return instance;
+		} catch (RuntimeException re) {
+			if(transaction != null){transaction.rollback();}
+			throw re;
+		}finally{
+			if(session != null && session.isOpen()){session.close();}
+		}
+	}
 
 	public List<?> readAll(String entityClassFullName, Object o) throws EntityNotFoundException{
 		Session session = null;

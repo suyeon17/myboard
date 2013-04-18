@@ -28,12 +28,28 @@ public class CourseMaterialDao extends BaseDao {
 		}
 	}
 	
+	public CourseMaterial read(int id) {
+		log.debug("reading " + entitySimpleName + " instance with id: " + id);
+		CourseMaterial instance = null;
+		
+		try {
+			instance = (CourseMaterial)super.read(entityFullName, Integer.valueOf(id));
+			log.debug(entitySimpleName + " read successful, instance found");
+		} catch(EntityNotFoundException ex){
+			log.error(entitySimpleName + " read successful, no instance found", ex);
+		} catch (RuntimeException re) {
+			log.error(entitySimpleName + " read failed", re);
+			throw re;
+		}
+		return instance;
+	}
+	
 	public CourseMaterial read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		CourseMaterial instance = null;
 		
 		try {
-			instance = (CourseMaterial)super.read(entityFullName, id);
+			instance = (CourseMaterial)super.read(entityFullName, Integer.valueOf(id));
 			log.debug(entitySimpleName + " read successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " read successful, no instance found", ex);
@@ -45,12 +61,11 @@ public class CourseMaterialDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<CourseMaterial> readAll(CourseMaterial instance) {
+	public List<?> readAll(CourseMaterial instance) {
 		log.debug("readAll " + entitySimpleName);
-		List<CourseMaterial> result = null;
-		
+		List<?> result = null;
 		try {
-			result = (List<CourseMaterial>)super.readAll(entityFullName, instance);
+			result = super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

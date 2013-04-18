@@ -35,6 +35,12 @@
         </managed-property>
     </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>materialTeacherBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.MaterialTeacherBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
     <!-- ************** Navigation Rules ************** -->
         <navigation-rule>
         <from-view-id>/loginPage.xhtml</from-view-id>
@@ -73,5 +79,18 @@
             <to-view-id>/testUser.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+     <navigation-rule>
+        <from-view-id>/courseMaterialTeacher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>uploadFile</from-outcome>
+            <to-view-id>/uploadFile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+     <navigation-rule>
+        <from-view-id>/courseMaterialTeacher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>returnFiles</from-outcome>
+            <to-view-id>/courseMaterialTeacher.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

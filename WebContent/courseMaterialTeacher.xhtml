@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+      <h:body>
+      
+      	<ui:composition template="/template/common/commonLayout.xhtml">
+      	
+      		<ui:define name="content">
+      		
+      		<h2 align="center" style="background:#228B22; color:white;">Teacher Materials</h2>
+      		
+      		
+      		<f:view>
+      			<h:form> 
+	      			<h:commandButton value="Upload" action="#{materialTeacherBean.uploadPage}" />
+	      			
+	      			<br/><br/>
+	      			 
+		            <h:commandButton action="#{materialTeacherBean.findFiles}" />
+		            <h:messages style="color:red"/> 
+		            
+		            <br/><br/>
+		            
+		            <h:panelGrid columns="5" width="100%" border="1" cellpadding="2" 
+		            	cellspacing="0" rules="rows">
+		            	
+	            		<h:outputText value="Course ID" />
+	            		<h:outputText value="Title" />
+	            		<h:outputText value="Description"/>
+	            		<h:outputText value="Filename"/>
+	            		<h:outputText value="Date Modified" />
+		            	
+	            		<h:outputText value="#{materialTeacherBean.course}"/>
+	            		<h:outputText value="#{materialTeacherBean.title}"/>
+	            		<h:outputText value="#{materialTeacherBean.description}"/>
+	            		<h:outputText value="#{materialTeacherBean.materialFilename}"/>
+		            	<h:outputText value="#{materialTeacherBean.uploadDate}" />
+
+							            	
+		            	
+		            </h:panelGrid>
+		            
+		            <h:outputText value="#{materialTeacherBean.getList()}" />
+		  
+				</h:form>    
+       		</f:view>
+       		
+      	    </ui:define>
+      		
+      </ui:composition>
+      
+	</h:body>
+</html>
