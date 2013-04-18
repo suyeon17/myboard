@@ -1,16 +1,11 @@
 package com.myboard.bean;
 
-import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.context.FacesContext;
-import org.apache.commons.io.FilenameUtils;
-import org.apache.myfaces.custom.fileupload.UploadedFile;
+
 import com.myboard.business.Material;
 import com.myboard.business.UserSession;
 import com.myboard.dao.CourseMaterial;
@@ -19,9 +14,9 @@ import com.myboard.dao.Courses;
 
 
 @ManagedBean
-public class MaterialTeacherBean implements Serializable {
+public class MaterialStudentBean  implements Serializable {
 
-	private static final long serialVersionUID = -4403631412398681874L;
+	private static final long serialVersionUID = 2419837056792129422L;
 	
 	private Integer courseMaterialId;
 	private String title;
@@ -32,14 +27,12 @@ public class MaterialTeacherBean implements Serializable {
 	private int course;
 	UserSession userSession;
 	Courses c;
-	 ArrayList<String[]> dataList = new ArrayList<String[]>();
-	 
+	ArrayList<String[]> dataList = new ArrayList<String[]>();
+	  
 	CourseUsers cu;
 	
-	private UploadedFile upFile;
-	
 
-	public MaterialTeacherBean() {
+	public MaterialStudentBean() {
 		c = new Courses();
 		cu = new CourseUsers();
 		
@@ -74,49 +67,7 @@ public class MaterialTeacherBean implements Serializable {
 				   dataList.add(row);
 			   }
 		   }
-		}
-
-	// Go to upload page
-	public String uploadPage() {
-		return ("uploadFile");
 	}
-
-	// Upload a file and write to database
-    public String upload() throws IOException {
-        String fileName = FilenameUtils.getName(upFile.getName());
-        String contentType = upFile.getContentType();
-        
-        // Uploaded file byte 
-        byte[] bytes = upFile.getBytes();
-                
-        
-        /*******************************************************************************************/
-        // Change to specific file path
-        String filePath = "C:\\Users\\J\\Desktop\\Material\\" + getCourse()+"\\"+fileName;
-        /*******************************************************************************************/
-
-        setMaterialFilename(fileName);
-        
-        Date date = new Date();
-        setUploadDate(date);
-        
-        // Open a new file for writing
-		RandomAccessFile file = new RandomAccessFile(filePath, "rw");
-	    
-		// Write bytes to new file for server
-	    file.write(bytes);
-	    
-	    file.close();
-
-	    // Write uploaded file info to database
-	    createMaterial();
-       
-	    // Send confirmation message to user
-        FacesContext.getCurrentInstance().addMessage(null, 
-            new FacesMessage(String.format("File '%s' of type '%s' successfully uploaded!", fileName, contentType)));
-        
-        return "fileUploaded";
-    }
     
     // Write uploaded file into database
     public void createMaterial() {
@@ -194,15 +145,7 @@ public class MaterialTeacherBean implements Serializable {
 
 	public void setCourse(Courses course) {
 		this.course = course.getCourseId();
-	}
-
-	public UploadedFile getUpFile() {
-		return upFile;
-	}
-
-	public void setUpFile(UploadedFile upFile) {
-		this.upFile = upFile;
-	}    
+	}  
 	
 	public ArrayList<String[]> getDataList() {
 		return dataList;

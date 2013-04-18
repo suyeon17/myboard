@@ -41,6 +41,12 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     
+     <managed-bean>
+        <managed-bean-name>materialStudentBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.MaterialStudentBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
     <!-- ************** Navigation Rules ************** -->
         <navigation-rule>
         <from-view-id>/loginPage.xhtml</from-view-id>
