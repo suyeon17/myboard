@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+<ui:composition template="/template/common/commonLayout.xhtml">
+  <ui:define name="content">
+    <h:messages />
+    	<f:view>
+	        <h:form>
+				#{viewSingleAccountBean.setSession()}
+				
+				<h:panelGrid columns="2">
+					<h:outputText value="User ID:		" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.uid}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="First Name:	" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.firstName}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Last Name:		" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.lastName}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Department:	" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.department.departmentName}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Permission:	" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.permission.permissionName}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Creation Date:	" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.creationDate}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Last Login:	" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.lastLogin}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Directory:		" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.privateDirectory}" ></h:outputText>
+				</h:panelGrid>
+				<h:panelGrid columns="2">
+					<h:outputText value="Email Address:	" ></h:outputText>
+					<h:outputText value="#{viewSingleAccountBean.user.emailAddress}" ></h:outputText>
+				</h:panelGrid>
+	        </h:form>
+        </f:view>
+  </ui:define>
+  </ui:composition>
+ </h:body>
+    
+</html>

@@ -8,9 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import com.myboard.exception.EntityAlreadyExistsException;
 import com.myboard.exception.EntityNotFoundException;
 
-public class CourseMaterialDao extends BaseDao {
-
-	private static final Log log = LogFactory.getLog(CourseMaterialDao.class);
+public class CourseMaterialDao extends BaseDao ourseMaterialDao.class);
 	private static final String entityFullName = CourseMaterial.class.getName();
 	private static final String entitySimpleName = CourseMaterial.class.getSimpleName();
 
@@ -33,23 +31,7 @@ public class CourseMaterialDao extends BaseDao {
 		CourseMaterial instance = null;
 		
 		try {
-			instance = (CourseMaterial)super.read(entityFullName, Integer.valueOf(id));
-			log.debug(entitySimpleName + " read successful, instance found");
-		} catch(EntityNotFoundException ex){
-			log.error(entitySimpleName + " read successful, no instance found", ex);
-		} catch (RuntimeException re) {
-			log.error(entitySimpleName + " read failed", re);
-			throw re;
-		}
-		return instance;
-	}
-	
-	public CourseMaterial read(String id) {
-		log.debug("reading " + entitySimpleName + " instance with id: " + id);
-		CourseMaterial instance = null;
-		
-		try {
-			instance = (CourseMaterial)super.read(entityFullName, Integer.valueOf(id));
+			instance = (CourseMaterial)super.read(entityFullName, id);
 			log.debug(entitySimpleName + " read successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " read successful, no instance found", ex);
@@ -64,7 +46,7 @@ public class CourseMaterialDao extends BaseDao {
 	public List<CourseMaterial> readAll() {
 		log.debug("readAll " + entitySimpleName);
 		List<CourseMaterial> result = null;
-
+		
 		try {
 			result = (List<CourseMaterial>)super.readAll(entityFullName, new CourseMaterial());
 			log.debug(entitySimpleName + " readAll successful, instance found");
@@ -83,13 +65,7 @@ public class CourseMaterialDao extends BaseDao {
 		try {
 			super.update(instance);
 			log.debug(entitySimpleName + " update successful");
-		} catch (RuntimeException re) {
-			log.error(entitySimpleName + " update failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(CourseMaterial persistentInstance) {
+		} catch (R(CourseMaterial persistentInstance) {
 		log.debug("deleting " + entitySimpleName + " instance");
 		
 		try {

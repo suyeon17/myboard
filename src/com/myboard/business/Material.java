@@ -33,7 +33,7 @@ public class Material {
 		this.creator = id;
 	}
 	
-	public void createMaterial(){
+	public int createMaterial(){
 		
 		/* Needed?
 		this.active = true;
@@ -48,6 +48,10 @@ public class Material {
 				this.materialFilename,this.course);
 		
 		dao.create(cm);
+		
+		int id = cm.getCourseMaterialId();
+		
+		return id;
 	}
 	
 	public void updateMaterial(){		
