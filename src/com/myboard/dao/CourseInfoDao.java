@@ -43,6 +43,21 @@ public class CourseInfoDao extends BaseDao {
 		}
 		return instance;
 	}
+	public CourseInfo read(Integer id) {
+		log.debug("reading " + entitySimpleName + " instance with id: " + id);
+		CourseInfo instance = null;
+		
+		try {
+			instance = (CourseInfo)super.read(entityFullName, id);
+			log.debug(entitySimpleName + " read successful, instance found");
+		} catch(EntityNotFoundException ex){
+			log.error(entitySimpleName + " read successful, no instance found", ex);
+		} catch (RuntimeException re) {
+			log.error(entitySimpleName + " read failed", re);
+			throw re;
+		}
+		return instance;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<CourseInfo> readAll(CourseInfo instance) {

@@ -28,7 +28,7 @@ public class CoursesDao extends BaseDao {
 		}
 	}
 	
-	public Courses read(String id) {
+	public Courses read(Integer id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Courses instance = null;
 		

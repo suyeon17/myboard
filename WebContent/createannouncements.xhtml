@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+			<ui:define name="content">
+				<h2>Create Announcements</h2>
+				<h:form>
+					<h:panelGrid columns="2">
+					
+					<h:outputLabel for="class_list" value="Classes:" />
+          				<h:selectOneListbox id="class_list" value="#{AnnouncementCreateBean.classSelected}" 
+          					   styleClass="selectOneListbox" required="true" 
+                               valueChangeListener="#{AnnouncementCreateBean.classSelectChanged}">  
+             		   		<f:selectItems id="class_list_select" value="#{AnnouncementCreateBean.classList}" />
+           				</h:selectOneListbox>
+           				
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<h:outputLabel for="AnnouncementTitleInput" value="Title:" />
+						<h:inputText id="AnnouncementTitleInput" value="#{AnnouncementCreateBean.announcementTitle}"/>
+						<h:outputLabel for="AnnouncementContentInput" value="Content:" />
+						<h:inputTextarea columns="40" rows="15" id="AnnouncementContentInput" value="#{AnnouncementCreateBean.description}" />
+						<h:outputLabel for="AnnouncementDoneButton" value="Finished:" />
+						<h:commandButton id="AnnouncementDoneButton" value="submit" actionListener="#{AnnouncementCreateBean.createAnnouncement}" />
+					</h:panelGrid>
+				</h:form>
+			
+			</ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

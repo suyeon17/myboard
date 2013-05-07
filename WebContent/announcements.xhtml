@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      >
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+			<ui:define name="content">
+				<h2>Announcements</h2>
+				
+					<h:form>
+					<h:panelGrid columns="4">
+ 						<h:outputLabel for="class_list" value="Classes:" />
+          				<h:selectOneListbox id="class_list" value="#{AnnouncementBean.classSelected}" 
+          					   styleClass="selectOneListbox" required="true" 
+                               valueChangeListener="#{AnnouncementBean.classSelectChanged}">  
+             		   		<f:selectItems id="class_list_select" value="#{AnnouncementBean.classList}" />             		   		
+           					<f:ajax event="change" listener="{AnnouncementBean.loadAnnouncements}" render="announcement_list" />
+           				</h:selectOneListbox>
+           				<h:outputLabel for="announcement_list" value="#{'Announcements:'}" />
+           				<h:selectOneListbox id="announcement_list" value="#{AnnouncementBean.announcementSelected}"
+           								styleClass="selectOneListbox" required="true"  
+           								valueChangeListener="#{AnnouncementBean.announcementSelectChanged}">
+           					<f:selectItems id="announcement_list_select" value="#{AnnouncementBean.announcementList}" />				
+           					<f:ajax event="valueChange" render="announcementOutput" />
+           				</h:selectOneListbox>
+           				</h:panelGrid>
+           			</h:form>	
+           				<!-- 
+           					ANNOUNCMENT OUTPUT BELOW
+           				 -->
+           				
+           				<h:panelGrid id="announcementOutput">
+           				<h2>
+           					<h:outputText value="#{AnnouncementBean.announcementTitle}" 
+           						/>
+           				</h2>
+           				<p>
+           					<h:outputText value="Date:#{AnnouncementBean.announcementDate}" 
+           						/>
+           				</p>
+           				<p>
+           					<h:outputText value="#{AnnouncementBean.announcementDescription}" 
+           						/>
+           				</p>
+           				</h:panelGrid>
+					
+				
+			</ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

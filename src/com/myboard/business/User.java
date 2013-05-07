@@ -1,9 +1,15 @@
 package com.myboard.business;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import com.myboard.dao.AccountPermissionsDao;
+import com.myboard.dao.CourseUsers;
+import com.myboard.dao.Courses;
 import com.myboard.dao.DepartmentDao;
 import com.myboard.dao.Users;
 import com.myboard.dao.UsersDao;
@@ -23,6 +29,9 @@ public class User implements Serializable {
 	private String privateDirectory;
 	private boolean active;
 	private String emailAddress;
+	
+	private Set<CourseUsers> courseUsers;
+	private Set<Courses> userCourses;
 	
 	public static final int INVALID_DEPARTMENT = -1;
 	public static final int INVALID_ACCOUNT_PERMISSIONS = -1;
@@ -109,7 +118,47 @@ public class User implements Serializable {
 			this.setPermissionId(users.getPermission().getPermissionId());
 			this.setEmailAddress(users.getEmailAddress());
 			this.setPassword(users.getPassword());
+			this.setCourseUsers(users.getCourseUsers());
 		}
+		
+		if(this.courseUsers != null)
+		{
+			CourseUsers[] usersArr = new CourseUsers[courseUsers.size()];
+			courseUsers.toArray(usersArr);
+			userCourses = new HashSet<Courses>();
+			for(int i=0; i<usersArr.length; i++)
+			{
+				if (usersArr[i].getCourse() != null) {
+					userCourses.add(usersArr[i].getCourse());
+				}
+				System.out.println("Hit here in User: " + usersArr[i].getCourse().getSection().getCourseInfo().getCourseName());
+			}
+		}//if
+	}//read
+	
+	public ArrayList<Course> getCourses() {
+		/*
+		 * userCourses is a Set<Courses>
+		 * We want an ArrayList<Course>
+		 * first we get an array of courses
+		 * then we add those courses to our array list
+		 */
+		Courses[] coursesArr;
+		coursesArr = userCourses.toArray(new Courses[userCourses.size()]);
+		ArrayList<Course> courseList = new ArrayList<Course>();
+		Course tempCourse;
+		for (int i = 0; i < coursesArr.length; i++) {
+			tempCourse = new Course();
+			tempCourse.setCourseId(coursesArr[i].getCourseId());
+			tempCourse.readCourse();
+			courseList.add(tempCourse);
+		}
+		
+		if(courseList.size() == 0) {
+			System.out.println("ERROR: COURSE LIST IS EMPTY");
+		}
+		
+		return courseList;
 	}
 
 	public String getUid() {
@@ -193,6 +242,16 @@ public class User implements Serializable {
 
 	public void setEmailAddress(String emailAddress) {
 		this.emailAddress = emailAddress.trim();
+	}
+	
+	public Set<CourseUsers> getCourseUsers()
+	{
+		return courseUsers;
+	}
+	
+	public void setCourseUsers(Set<CourseUsers> courseUsers)
+	{
+		this.courseUsers = courseUsers;
 	}
 	
 }

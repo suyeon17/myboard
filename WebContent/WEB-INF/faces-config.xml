@@ -26,6 +26,18 @@
     </managed-bean>
     
     <managed-bean>
+    	<managed-bean-name>AnnouncementBean</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.AnnouncementBean</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+    	<managed-bean-name>AnnouncementCreateBean</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.AnnouncementCreateBean</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
         <managed-bean-name>loginBean</managed-bean-name>
         <managed-bean-class>com.myboard.bean.LoginBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
