@@ -28,7 +28,7 @@ public class MessageDao extends BaseDao {
 		}
 	}
 	
-	public Message read(String id) {
+	public Message read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Message instance = null;
 		

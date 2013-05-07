@@ -1,5 +1,6 @@
 package com.myboard.dao;
 
+import java.io.File;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,6 +13,8 @@ public class Courses implements java.io.Serializable {
 
 	private static final long serialVersionUID = -266516827773610878L;
 
+	private static final String ROOT_PATH = "/home/cis485/Course_Central/";
+	
 	private Integer courseId;
 	private CourseSection section;
 	private Semester semester;
@@ -116,5 +119,30 @@ public class Courses implements java.io.Serializable {
 
 	public void setAssignments(Set<Assignments> assignments) {
 		this.assignments = assignments;
+	}
+	
+	public String getAbsolutePath(){
+		return ROOT_PATH+this.courseId.toString()+"/";
+	}
+	
+	/*
+	 * Creates the following course directories
+	 * 		Main course directory (course_id)
+	 * 		Material subdirectory
+	 * 		Assignments subdirectory along with Assignment submissions subdirectory
+	 * 		Messages subdirectory
+	 */
+	public void createCourseDirectories(){
+		String[] paths = { getAbsolutePath(),
+						   getAbsolutePath()+CourseMaterial.DIR_NAME,
+						   getAbsolutePath()+Assignments.DIR_NAME,
+						   getAbsolutePath()+Assignments.DIR_NAME+AssignmentSubmission.DIR_NAME,
+						   getAbsolutePath()+Message.DIR_NAME
+						  };
+		for(String d : paths){
+			File dir = new File(d);
+			if (!dir.exists())
+				dir.mkdir();
+		}
 	}
 }

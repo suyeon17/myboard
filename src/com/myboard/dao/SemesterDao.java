@@ -28,7 +28,7 @@ public class SemesterDao extends BaseDao{
 		}
 	}
 	
-	public Semester read(String id) {
+	public Semester read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Semester instance = null;
 		

@@ -11,6 +11,8 @@ public class CourseMaterial implements java.io.Serializable {
 
 	private static final long serialVersionUID = 7559627526224071501L;
 
+	public static final String DIR_NAME = "Material/";
+	
 	private Integer courseMaterialId;
 	private String title;
 	private String description;
@@ -95,5 +97,10 @@ public class CourseMaterial implements java.io.Serializable {
 
 	public void setCourse(Courses course) {
 		this.course = course;
+	}
+	
+	private String getAbsolutePath(){
+		if(course == null)	return null;
+		return course.getAbsolutePath()+DIR_NAME;
 	}
 }

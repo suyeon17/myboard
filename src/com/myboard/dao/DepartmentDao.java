@@ -28,7 +28,7 @@ public class DepartmentDao extends BaseDao {
 		}
 	}
 	
-	public Department read(String id) {
+	public Department read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Department instance = null;
 		

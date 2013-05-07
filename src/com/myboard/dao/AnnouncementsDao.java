@@ -28,7 +28,7 @@ public class AnnouncementsDao extends BaseDao {
 		}
 	}
 	
-	public Announcements read(String id) {
+	public Announcements read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Announcements instance = null;
 		
