@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    		<ui:define name="content">
+    			<h2>Search User by ID</h2>
+    			<f:view>
+    			    <h:form>
+    			        <h:panelGrid columns="1">
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchUser" value="UserId: "/>
+			                    <h:inputText id="userid" value="#{UserBean.userId}" required="true" size="8" maxlength="8"/> 
+			                    <t:message for="searchUser" styleClass="error" showDetail="true" showSummary="false" />
+			                    <h:commandButton action="#{UserBean.searchForExistingUser}" value="Search" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchUser" value="First Name: "/>
+			                    <h:outputLabel for="searchUser" value="#{UserBean.firstName}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                    <h:panelGroup>
+			                    <h:outputLabel for="searchUser" value="Last Name: "/>
+			                    <h:outputLabel for="searchUser" value="#{UserBean.lastName}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchUser" value="Department: "/>
+			                    <h:outputLabel for="searchUser" value="#{UserBean.department}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchUser" value="PermissionId: "/>
+			                    <h:outputLabel for="searchUser" value="#{UserBean.permissionId}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchUser" value="Email Address: "/>
+			                    <h:outputLabel for="searchUser" value="#{UserBean.email}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+  			             </h:panelGrid>
+    			    </h:form>
+    			</f:view>
+    		</ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+    
+</html>

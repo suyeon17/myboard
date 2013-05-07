@@ -1,3 +1,12 @@
+/*
+ * The User class is the 2nd level of abstraction
+ * (business logic) between the end user and the database.
+ * It does the heavy lifting for creating, reading, and updating
+ * database information about specific users.
+ * 
+ * Should work as is.
+ */
+
 package com.myboard.business;
 
 import java.io.Serializable;
@@ -135,7 +144,7 @@ public class User implements Serializable {
 			}
 		}//if
 	}//read
-	
+
 	public ArrayList<Course> getCourses() {
 		/*
 		 * userCourses is a Set<Courses>
@@ -149,7 +158,7 @@ public class User implements Serializable {
 		Course tempCourse;
 		for (int i = 0; i < coursesArr.length; i++) {
 			tempCourse = new Course();
-			tempCourse.setCourseId(coursesArr[i].getCourseId());
+			tempCourse.setCourseId(coursesArr[i].getCourseId().toString());
 			tempCourse.readCourse();
 			courseList.add(tempCourse);
 		}
@@ -160,7 +169,7 @@ public class User implements Serializable {
 		
 		return courseList;
 	}
-
+	
 	public String getUid() {
 		return uid;
 	}

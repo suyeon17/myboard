@@ -57,7 +57,7 @@ public class BaseDao {
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			transaction = session.beginTransaction();
-			Object instance = session.get(entityClassFullName, id);
+			Object instance = session.get(entityClassFullName, /*id);*/Integer.parseInt(id));
 			transaction.commit();
 			
 			if(instance == null){

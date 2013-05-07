@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    		<ui:define name="content">
+    			<h2>Search Class by ID</h2>
+    			<f:view>
+    			    <h:form>
+    			        <h:panelGrid columns="1">
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchCourse" value="CourseId: "/>
+			                    <h:inputText id="courseid" value="#{CourseBean.courseId}" required="true" size="8" maxlength="8"/> 
+			                    <t:message for="searchCourse" styleClass="error" showDetail="true" showSummary="false" />
+			                    <h:commandButton action="#{CourseBean.searchForExistingCourse}" value="Search" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchCourse" value="Course Name: "/>
+			                    <h:outputLabel for="searchCourse" value="#{CourseBean.courseName}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                    <h:panelGroup>
+			                    <h:outputLabel for="searchCourse" value="Course Description: "/>
+			                    <h:outputLabel for="searchCourse" value="#{CourseBean.courseDescription}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchCourse" value="Department: "/>
+			                    <h:outputLabel for="searchCourse" value="#{CourseBean.department}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchCourse" value="Credits: "/>
+			                    <h:outputLabel for="searchCourse" value="#{CourseBean.credits}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="searchCourse" value="Section: "/>
+			                    <h:outputLabel for="searchCourse" value="#{CourseBean.section}"/>
+			                    <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+  			             </h:panelGrid>
+
+    			        <h:outputText value="&lt;br/&gt;" escape="false" />
+    			    </h:form>
+    			</f:view>
+    		</ui:define>
+    	</ui:composition>
+    	
+    </h:body>
+    
+</html>

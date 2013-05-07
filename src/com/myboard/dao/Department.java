@@ -19,10 +19,23 @@ public class Department implements java.io.Serializable {
 
 	public Department() {
 	}
+	
+	public Department(String deptId, String departmentName) {
+		this.deptId = Integer.parseInt(deptId);
+		this.departmentName = departmentName;
+	}
 
 	public Department(int deptId, String departmentName) {
 		this.deptId = deptId;
 		this.departmentName = departmentName;
+	}
+	
+	public Department(String deptId, String departmentName,
+			Set<CourseInfo> courseInfos, Set<Users> users) {
+		this.deptId = Integer.parseInt(deptId);
+		this.departmentName = departmentName;
+		this.courseInfos = courseInfos;
+		this.users = users;
 	}
 
 	public Department(int deptId, String departmentName,
@@ -40,6 +53,11 @@ public class Department implements java.io.Serializable {
 	public void setDeptId(int deptId) {
 		this.deptId = deptId;
 	}
+	
+	public void setDeptId(String deptId) {
+		this.deptId = Integer.parseInt(deptId);
+	}
+
 
 	public String getDepartmentName() {
 		return this.departmentName;

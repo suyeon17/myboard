@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t ="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    	
+    		<ui:define name="content">
+    			<h2>Update Class</h2>
+    			
+    			<f:view>
+    			    <h:form>
+    			    
+    			    <h:panelGrid columns="3">
+						<h:outputLabel for="courseName">Course Name</h:outputLabel>
+						<h:inputText id="courseName" value="#{CourseBean.courseName}"
+							required="true">
+							<f:ajax event="blur" render="courseNameMessage" />
+						</h:inputText>
+						<h:message id="courseNameMessage" for="courseName" />
+						
+						<h:outputLabel for="courseId">Course ID</h:outputLabel>
+						<h:inputText id="courseId" value="#{CourseBean.courseId}"
+							required="true">
+							<f:ajax event="blur" render="courseIdMessage" />
+						</h:inputText>
+						<h:message id="courseIdMessage" for="courseId" />
+						
+						<h:outputLabel for="courseDesc">Course Description</h:outputLabel>
+						<h:inputText id="courseDesc" value="#{CourseBean.courseDescription}"
+							required="true">
+							<f:ajax event="blur" render="courseDescMessage" />
+						</h:inputText>
+						<h:message id="courseDescMessage" for="courseDesc" />
+						
+						<h:outputLabel for="department">Department</h:outputLabel>
+						<h:inputText id="department" value="#{CourseBean.department}"
+							required="true">
+							<f:ajax event="blur" render="departmentMessage" />
+						</h:inputText>
+						<h:message id="departmentMessage" for="department" />
+						
+
+						<h:outputLabel for="credits">Credits</h:outputLabel>
+						<h:inputText id="credits" value="#{CourseBean.credits}"
+							required="true">
+							<f:ajax event="blur" render="creditsMessage" />
+						</h:inputText>
+						<h:message id="creditsMessage" for="credits" />
+						
+						<h:outputLabel for="section">Section</h:outputLabel>
+						<h:inputText id="section" value="#{CourseBean.section}"
+							required="true">
+							<f:ajax event="blur" render="sectionMessage" />
+						</h:inputText>
+						<h:message id="sectionMessage" for="section" />
+						
+						<h:outputLabel for="Semester">Semester</h:outputLabel>
+						<h:inputText id="semester" value="#{CourseBean.semester}"
+							required="true">
+							<f:ajax event="blur" render="semesterMessage" />
+						</h:inputText>
+						<h:message id="semesterMessage" for="semester" />
+
+						<h:panelGroup />
+						<h:commandButton value="Register" action="#{CourseBean.updateCourse}">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+					</h:panelGrid>
+    			    
+    			    </h:form>
+    			</f:view>
+    			
+    		</ui:define>
+    		
+    	</ui:composition>
+    	
+    </h:body>
+
+</html>

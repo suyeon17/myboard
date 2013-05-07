@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<h:body>
+
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h2>Add User</h2>
+
+			<f:view>
+				<h:form>
+
+					<h:panelGrid columns="3">
+						<h:outputLabel for="courseID">Course ID</h:outputLabel>
+						<h:inputText id="courseID" value="#{AssignUsersBean.courseId}"
+							required="true">
+							<f:ajax event="blur" render="courseIDMessage" />
+						</h:inputText>
+						<h:message id="courseIDMessage" for="courseID" />
+						
+						<h:outputLabel for="userId">User ID</h:outputLabel>
+						<h:inputText id="userId" value="#{AssignUsersBean.userId}"
+							required="true">
+							<f:ajax event="blur" render="userIdMessage" />
+						</h:inputText>
+						<h:message id="userIdMessage" for="userId" />
+						
+						<h:outputLabel for="courseRole">Course Roles</h:outputLabel>
+						<h:inputText id="courseRole" value="#{AssignUsersBean.courseRoleId}"
+							required="true">
+							<f:ajax event="blur" render="courseRoleMessage" />
+						</h:inputText>
+						<h:message id="courseRoleMessage" for="courseRole" />
+						
+						<h:commandButton value="Assign" action="#{AssignUsersBean.assign}">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+					</h:panelGrid>
+
+				</h:form>
+			</f:view>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

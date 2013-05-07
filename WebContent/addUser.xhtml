@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<h:body>
+
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h2>Add User</h2>
+
+			<f:view>
+				<h:form>
+
+					<h:panelGrid columns="3">
+						<h:outputLabel for="firstName">First Name</h:outputLabel>
+						<h:inputText id="firstName" value="#{UserBean.firstName}"
+							required="true">
+							<f:ajax event="blur" render="firstNameMessage" />
+						</h:inputText>
+						<h:message id="firstNameMessage" for="firstName" />
+						
+						<h:outputLabel for="lastName">Last Name</h:outputLabel>
+						<h:inputText id="lastName" value="#{UserBean.lastName}"
+							required="true">
+							<f:ajax event="blur" render="lastNameMessage" />
+						</h:inputText>
+						<h:message id="lastNameMessage" for="lastName" />
+						
+						<h:outputLabel for="uid">uid</h:outputLabel>
+						<h:inputText id="uid" value="#{UserBean.userId}"
+							required="true">
+							<f:ajax event="blur" render="uidMessage" />
+						</h:inputText>
+						<h:message id="uidMessage" for="uid" />
+
+						<h:outputLabel for="password">Password</h:outputLabel>
+						<h:inputSecret id="password" value="#{UserBean.password}"
+							required="true" redisplay="true">
+							<f:ajax event="blur" render="passwordMessage" />
+						</h:inputSecret>
+						<h:message id="passwordMessage" for="password" />
+						
+						<h:outputLabel for="department">Department</h:outputLabel>
+						<h:inputText id="department" value="#{UserBean.department}"
+							required="true">
+							<f:ajax event="blur" render="departmentMessage" />
+						</h:inputText>
+						<h:message id="departmentMessage" for="department" />
+
+						<h:outputLabel for="perm_ID">Permission ID</h:outputLabel>
+						<h:inputText id="perm_ID" value="#{UserBean.permissionId}"
+							required="true">
+							<f:ajax event="blur" render="permIDMessage" />
+						</h:inputText>
+						<h:message id="permIDMessage" for="perm_ID" />
+						
+						<h:outputLabel for="email">E-Mail Address</h:outputLabel>
+						<h:inputText id="email" value="#{UserBean.email}"
+							required="true">
+							<f:ajax event="blur" render="emailMessage" />
+						</h:inputText>
+						<h:message id="emailMessage" for="email" />
+
+						<h:panelGroup />
+						<h:commandButton value="Search" action="#{UserBean.createUser}">
+							<f:ajax execute="@form" render="@form" />
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+					</h:panelGrid>
+
+				</h:form>
+			</f:view>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

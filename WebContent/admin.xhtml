@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+<h:body>
+
+	<ui:composition template="/template/common/commonLayout.xhtml">
+
+		<ui:define name="content">
+			<h2>Add User</h2>
+
+			<f:view>
+				<h:form>
+
+					<h:panelGrid columns="3">
+						<h:commandButton value="Create User" action="addUser">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+						<h:commandButton value="Search User" action="searchUser">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+						<h:commandButton value="Update User" action="updateUser">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+						<h:commandButton value="Create Class" action="addClass">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+						<h:commandButton value="Search Class" action="searchClass">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+						<h:commandButton value="Update Class" action="updateClass">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+						<h:commandButton value="Asign Users to Classes" action="assignUsers">
+						</h:commandButton>
+						<h:messages globalOnly="true" layout="table" />
+					</h:panelGrid>
+
+				</h:form>
+			</f:view>
+
+		</ui:define>
+
+	</ui:composition>
+
+</h:body>
+
+</html>

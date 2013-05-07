@@ -8,6 +8,24 @@
 
     <!-- ************** Managed Beans ***************** -->
     <managed-bean>
+        <managed-bean-name>AssignUsersBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.AssignUsersBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>CourseBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.CourseBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>UserBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.UserBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
         <managed-bean-name>testPageBean</managed-bean-name>
         <managed-bean-class>com.myboard.bean.TestPageBean</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>

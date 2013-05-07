@@ -1,9 +1,29 @@
+/*
+ * The CourseBean class is part of the first layer
+ * of abstraction between the end user and the database.
+ * It contains all of the methods for creating, reading,
+ * and updating course objects.
+ * 
+ * NEEDS ADDITIONAL WORK
+ * Not all of the information obtained has been handled
+ * yet. Functionality needs to be added to handle the
+ * different Sets on information (CourseUsers, Assignments,
+ * etc.)
+ */
+
 package com.myboard.bean;
 
 import java.io.Serializable;
+import java.util.Set;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import com.myboard.business.Course;
+import com.myboard.dao.Announcements;
+import com.myboard.dao.Assignments;
+import com.myboard.dao.CourseMaterial;
+import com.myboard.dao.CourseUsers;
+import com.myboard.dao.Message;
 
 @ManagedBean
 @RequestScoped
@@ -19,6 +39,11 @@ public class CourseBean implements Serializable {
 	private int section;
 	private String semester;
 	private String courseRootDirectory;
+	private Set<CourseUsers> users;
+	private Set<Announcements> announcements;
+	private Set<CourseMaterial> materials;
+	private Set<Message> messages;
+	private Set<Assignments> assignments;
 
     public CourseBean() {
         
@@ -38,6 +63,11 @@ public class CourseBean implements Serializable {
 		course.setSection(this.section);
 		course.setSemester(this.semester);
 		course.setCourseRootDirectory(this.courseRootDirectory);
+		course.setUsers(this.users);
+		course.setAnnouncements(this.announcements);
+		course.setMaterials(this.materials);
+		course.setMessages(this.messages);
+		course.setAssignments(this.assignments);
 		
 		try{
 	        course.createCourse();
@@ -61,9 +91,60 @@ public class CourseBean implements Serializable {
 		this.section = course.getSection();
 		this.semester = course.getSemester();
 		this.courseRootDirectory = course.getCourseRootDirectory();
+		this.users = course.getUsers();
+		this.announcements = course.getAnnouncements();
+		this.materials = course.getMaterials();
+		this.messages = course.getMessages();
+		this.assignments = course.getAssignments();
 		
 		return "OK";
-	}
+		
+		/* The following code will allow you to access each individual
+		 * element contained in each of the sets.
+		 * Functionality needs to be added to handle the elements
+		 * in the desired fashion
+		 */
+		/*
+		if (this.users != null) {
+			CourseUsers[] useArr = new CourseUsers[users.size()];
+			users.toArray(useArr);
+			for (int i = 0; i < users.size(); i++) {
+				System.out.println("HIT HERE: "
+						+ useArr[i].getUser().getUid().toString());
+			}
+		}// if
+
+		if (this.announcements != null) {
+			Announcements[] annArr = new Announcements[announcements.size()];
+			announcements.toArray(annArr);
+			for (int i = 0; i < announcements.size(); i++) {
+				// code to handle here
+			}
+		}
+		
+		if (this.materials != null) {
+			CourseMaterial[] matArr = new CourseMaterial[materials.size()];
+			materials.toArray(matArr);
+			for (int i = 0; i < materials.size(); i++) {
+				// code to handle here
+			}
+		}
+		if (this.messages != null) {
+			Message[] messArr = new Message[messages.size()];
+			messages.toArray(messArr);
+			for (int i = 0; i < messages.size(); i++) {
+				// code to handle here
+			}
+		}
+		if (this.assignments != null) {
+			Assignments[] assgnArr = new Assignments[assignments.size()];
+			assignments.toArray(assgnArr);
+			for (int i = 0; i < assignments.size(); i++) {
+				// code to handle here
+			}
+		}
+		*/
+	}//searchForExistingUser
 	
 	public String updateCourse(){
 		Course course = new Course();
@@ -75,6 +156,11 @@ public class CourseBean implements Serializable {
 		course.setSection(this.section);
 		course.setSemester(this.semester);
 		course.setCourseRootDirectory(this.courseRootDirectory);
+		course.setUsers(this.users);
+		course.setAnnouncements(this.announcements);
+		course.setMaterials(this.materials);
+		course.setMessages(this.messages);
+		course.setAssignments(this.assignments);
 		
 		course.updateCourse();
 		
@@ -139,4 +225,44 @@ public class CourseBean implements Serializable {
 	public void setCourseRootDirectory(String courseRootDirectory) {
 		this.courseRootDirectory = courseRootDirectory.trim();
 	}
+	public Set<CourseUsers> getUsers() {
+		return users;
+	}
+
+	public void setUsers(Set<CourseUsers> users) {
+		this.users = users;
+	}
+
+	public Set<Announcements> getAnnouncements() {
+		return announcements;
+	}
+
+	public void setAnnouncements(Set<Announcements> announcements) {
+		this.announcements = announcements;
+	}
+
+	public Set<CourseMaterial> getMaterials() {
+		return materials;
+	}
+
+	public void setMaterials(Set<CourseMaterial> materials) {
+		this.materials = materials;
+	}
+
+	public Set<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
+
+	public Set<Assignments> getAssignments() {
+		return assignments;
+	}
+
+	public void setAssignments(Set<Assignments> assignments) {
+		this.assignments = assignments;
+	}
+	
 }// class

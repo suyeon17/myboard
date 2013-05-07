@@ -1,3 +1,27 @@
+/*
+ * The Course class is a 2nd abstraction level class
+ * (business logic). It contains all the functionality
+ * to read and write (create, update) courses to the
+ * database.
+ * 
+ * The structure of information is a little complicated.
+ * Each Courses object has an associated section id to a
+ * CourseSection object.
+ * 
+ * Each CourseSection object has an associated course info id
+ * associated with a CourseInfo object.
+ * 
+ * The process of creating a new course also creates a 
+ * CourseSection object and a CourseInfo object as needed.
+ * 
+ * ADDITIONAL WORK NEEDED:
+ * Testing needs to be done to ensure that duplicates of
+ * CoureInfo objects aren't being created. If duplicates
+ * are being created, testing probably needs to trickle back
+ * to the addClass.xhtml page and the requirements it asks
+ * for to create the new class.
+ */
+
 package com.myboard.business;
 
 import java.io.Serializable;
@@ -5,20 +29,23 @@ import java.util.Date;
 import java.util.Set;
 
 import com.myboard.dao.Announcements;
-//import com.myboard.dao.CourseInfo;
-//import com.myboard.dao.CourseInfoDao;
+import com.myboard.dao.Assignments;
+import com.myboard.dao.CourseInfo;
+import com.myboard.dao.CourseInfoDao;
+import com.myboard.dao.CourseMaterial;
+import com.myboard.dao.CourseSection;
 import com.myboard.dao.CourseSectionDao;
 import com.myboard.dao.CourseUsers;
-import com.myboard.dao.CourseUsersDao;
 import com.myboard.dao.Courses;
 import com.myboard.dao.CoursesDao;
 import com.myboard.dao.DepartmentDao;
+import com.myboard.dao.Message;
 import com.myboard.dao.SemesterDao;
 
 public class Course implements Serializable {
-	
+
 	private static final long serialVersionUID = 9033128014477448074L;
-	
+
 	//private Integer courseInfoId;
 	/*
 	 * Max: 
@@ -35,187 +62,195 @@ public class Course implements Serializable {
 	private String courseRootDirectory;
 	private boolean active;
 	private Date creationDate;
-	
+
 	private Set<CourseUsers> users;
 	private Set<Announcements> announcements;
-	private String courseUsersId;
-	
+	private Set<CourseMaterial> materials;
+	private Set<Message> messages;
+	private Set<Assignments> assignments;
+
 	public static final int INVALID_DEPARTMENT = -1;
-	
-	public enum Department{
-		NO_ASSOCIATION,
-		COMPUTER_SCIENCE,
-		MATHEMATICS;
+
+	public enum Department {
+		NO_ASSOCIATION, COMPUTER_SCIENCE, MATHEMATICS;
 	}
-	
-	public enum section{
-		NO_ASSOCIATION,
-		SECTION_ONE,
-		SECTION_TWO,
-		SECTION_FIFTY;
+
+	public enum section {
+		NO_ASSOCIATION, SECTION_ONE, SECTION_TWO, SECTION_FIFTY;
 	}
-	
-	public Course(){
+
+	public Course() {
 		//this. courseInfoId = 0;
 		this.courseId = "";
 		this.courseName = "";
 		this.courseDescription = "";
 		this.courseRootDirectory = "";
 	}
-	
-	public Course(String id){
+
+	public Course(String id) {
 		this();
 		this.courseId = id;
 	}
-	
-	public void createCourse(){
+
+	public void createCourse() {
+		System.out.println("Hit here from Course.java");
 		this.active = true;
-		this.courseRootDirectory = "/" + this.courseId + "/";
+		//this.courseRootDirectory = "/" + this.courseId + "/";
 		this.creationDate = new Date();
-		
-		//Create Courses Object
 		CoursesDao dao = new CoursesDao();
+		Courses courses = dao.read(this.courseId);
 		
-		com.myboard.dao.Department d = getDeptObjById();
-		if(d == null) return;
-		
-		com.myboard.dao.CourseSection cs = getSectionObjById();
-		if(cs == null) return;
-		
-		com.myboard.dao.Semester s = getSemesterObjById();
-		if(s == null) return;
-
-		Courses courses = new Courses(cs, s, 
-				this.courseRootDirectory);
-				
-		dao.create(courses);
-		
-		//Create CourseInfo Object
-		//CourseInfoDao dao2 = new CourseInfoDao();
-		
-		com.myboard.dao.Department d2 = getDeptObjById();
-		if(d2 == null) return;
-
-//		CourseInfo courseInfo = new CourseInfo(this.courseId, this.courseName,
-//				this.courseDescription, d2, this.credits);
-		
-		//dao2.create(courseInfo);
+		if(courses != null)
+		{
+			//check section
+			CourseSectionDao dao2 = new CourseSectionDao();
+			CourseSection courseSection = dao2.read(Integer.toString(courses.getSection().getCourseSectionId()));
+			if(courseSection != null)
+			{
+				//read courseInfo
+				CourseInfoDao dao3 = new CourseInfoDao();
+				CourseInfo courseInfo = dao3.read(courseSection.getCourseInfo().getCourseId());
+				if(courseInfo != null)
+				{}
+				else
+				{
+					//new courseInfo
+					courseInfo = new CourseInfo(this.courseId, this.courseName,
+							this.courseDescription, getDeptObjById(), this.credits);
+					dao3.create(courseInfo);
+				}
+			}
+			else
+			{
+				//new courseSection + new courseInfo
+				CourseInfoDao dao3 = new CourseInfoDao();
+				CourseInfo courseInfo = new CourseInfo(this.courseId, this.courseName,
+						this.courseDescription, getDeptObjById(), this.credits);
+				dao3.create(courseInfo);
+				courseSection = new CourseSection(courseInfo, this.section);
+				dao2.create(courseSection);
+			}
+			
+		}
+		else
+		{
+			//new courses + courseSection + new courseInfo
+			CourseSectionDao dao2 = new CourseSectionDao();
+			CourseInfoDao dao3 = new CourseInfoDao();
+			
+			CourseInfo courseInfo = new CourseInfo(this.courseId, this.courseName,
+					this.courseDescription, getDeptObjById(), this.credits);
+			dao3.create(courseInfo);
+			CourseSection courseSection = new CourseSection(courseInfo, this.section);
+			dao2.create(courseSection);
+			courses = new Courses(courseSection, getSemesterObjById());
+			dao.create(courses);
+		}
 	}// create
-	
-	private com.myboard.dao.CourseSection getSectionObjById(){
-		CourseSectionDao dao = new CourseSectionDao();
-		return dao.read(Integer.toString(this.section));
-	}
-	
-	private com.myboard.dao.Department getDeptObjById(){
+
+	private com.myboard.dao.Department getDeptObjById() {
 		DepartmentDao dao = new DepartmentDao();
-		return dao.read("0");
-		//return dao.read(this.department+"");
+		return dao.read(this.department+"");
 	}
-	
-	private com.myboard.dao.Semester getSemesterObjById(){
+
+	private com.myboard.dao.Semester getSemesterObjById() {
 		SemesterDao dao = new SemesterDao();
 		return dao.read(this.semester);
 	}
-	
-	
-	public void updateCourse(){		
+
+	public void updateCourse() {
+		try{
 		CoursesDao dao = new CoursesDao();
-	//	CourseInfoDao dao2 = new CourseInfoDao();
-		
-		Courses courses = dao.read(Integer.parseInt(courseId));
-	//	CourseInfo courseInfo = dao2.read(courseId);
-		
-		if(courses != null){
-		//	courseInfo.setCourseName(!this.courseName.isEmpty() && this.courseName != courseInfo.getCourseName() ? this.courseName : courseInfo.getCourseName());
-		//	courseInfo.setCourseDescription(!this.courseDescription.isEmpty() && this.courseDescription != courseInfo.getCourseDescription() ? this.courseDescription : courseInfo.getCourseDescription());
-		//	courseInfo.setDepartment(this.department != Course.INVALID_DEPARTMENT && this.department != courseInfo.getDepartment().getDeptId() ? getDeptObjById() : courseInfo.getDepartment());
-		//	courseInfo.setCredits(this.credits >= 0 && this.credits != courseInfo.getCredits() ? this.credits : courseInfo.getCredits());
-			courses.setSection(this.section != Course.INVALID_DEPARTMENT && this.section != courses.getSection().getCourseSectionId() ? getSectionObjById() : courses.getSection());
-			courses.setSemester(!this.semester.isEmpty() && this.semester != courses.getSemester().getSemesterName() ? getSemesterObjById() : courses.getSemester());
+		CourseInfoDao dao2 = new CourseInfoDao();
+		CourseSectionDao dao3 = new CourseSectionDao();
+
+		Courses courses = dao.read(this.courseId);
+		CourseInfo courseInfo = courses.getSection().getCourseInfo();
+		CourseSection courseSection = courses.getSection();
+
+		if (courses != null && courseInfo != null) {
+			courseInfo
+					.setCourseName(!this.courseName.isEmpty()
+							&& this.courseName != courseInfo.getCourseName() ? this.courseName
+							: courseInfo.getCourseName());
+			courseInfo.setCourseDescription(!this.courseDescription.isEmpty()
+					&& this.courseDescription != courseInfo
+							.getCourseDescription() ? this.courseDescription
+					: courseInfo.getCourseDescription());
+			courseInfo
+					.setDepartment(this.department != Course.INVALID_DEPARTMENT
+							&& this.department != courseInfo.getDepartment()
+									.getDeptId() ? getDeptObjById()
+							: courseInfo.getDepartment());
+			courses.setSemester(!this.semester.isEmpty()
+					&& this.semester != courses.getSemester().getSemesterName() ? getSemesterObjById()
+					: courses.getSemester());
+			
+			courseInfo.setCredits(this.credits);
+			courseSection.setSection(this.section);
+			courses.setUsers(this.users);
+			courses.setAnnouncements(this.announcements);
+			courses.setMaterials(this.materials);
+			courses.setMessages(this.messages);
+			courses.setAssignments(this.assignments);
 			dao.update(courses);
+			dao2.update(courseInfo);
+			dao3.update(courseSection);
+			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
 		}
 	}
-	
-	public void readCourse(){
-		//CourseInfoDao dao = new CourseInfoDao();
-		//CourseInfo courseInfo = dao.read(this.getCourseId());
-		
-//		if(courseInfo != null){
-//			this.setCourseName(courseInfo.getCourseName());
-//			this.setCourseDescription(courseInfo.getCourseDescription());
-//			this.setDepartment(courseInfo.getDepartment().getDeptId());
-//			this.setCredits(courseInfo.getCredits());
-//		}
-		
-		CoursesDao dao2 = new CoursesDao();
-		Courses courses = dao2.read(Integer.parseInt(this.getCourseId()));
-		
-		if(courses != null){
-			this.setSection(courses.getSection().getCourseSectionId());
+
+	public void readCourse() {
+
+		CoursesDao dao = new CoursesDao();
+		Courses courses = dao.read(this.getCourseId());
+
+		if (courses != null) {
+			this.setSection(courses.getSection().getSection());
 			this.setSemester(courses.getSemester().getSemesterName());
 			this.setUsers(courses.getUsers());
 			this.setAnnouncements(courses.getAnnouncements());
+			this.setMaterials(courses.getMaterials());
+			this.setMessages(courses.getMessages());
+			this.setAssignments(courses.getAssignments());
+			this.setCourseRootDirectory(courses.getCourseRootDirectory());
 		}
 		
-		if(this.users != null)
-		{
-			CourseUsers[] useArr = new CourseUsers[users.size()]; 
-			users.toArray(useArr);
-			for(int i=0; i<users.size(); i++)
-			{
-				System.out.println("HIT HERE: "+useArr[i].getUser().getUid().toString());
-			}
-		}//if
-		
-		if(this.announcements != null)
-		{
-			Announcements[] annArr = new Announcements[announcements.size()];
-			announcements.toArray(annArr);
-			for(int i=0; i<announcements.size(); i++)
-			{
-				//code to handle here
-			}
-		}
-	}//read
+		CourseInfo courseInfo = courses.getSection().getCourseInfo();
 
-	public Course copy() {
-		Course copiedCourse = new Course();
-		
-		copiedCourse.active = this.active;
-		copiedCourse.courseDescription = this.courseDescription;
-		copiedCourse.courseId = this.courseId;
-		copiedCourse.courseName = this.courseName;
-		copiedCourse.courseRootDirectory = this.courseRootDirectory;
-		copiedCourse.courseUsersId = this.courseUsersId;
-		copiedCourse.creationDate = this.creationDate;
-		copiedCourse.credits = this.credits;
-		copiedCourse.department = this.department;
-		copiedCourse.semester = this.semester;
-		copiedCourse.section = this.section;
-		copiedCourse.users = this.users;
-		
-		return copiedCourse;
-	}
-	
+		if (courseInfo != null) {
+			this.setCourseName(courseInfo.getCourseName());
+			this.setCourseDescription(courseInfo.getCourseDescription());
+			this.setDepartment(courseInfo.getDepartment().getDeptId());
+			this.setCredits(courseInfo.getCredits());
+		}
+
+	}// read
+
 	public String getCourseId() {
 		return courseId;
 	}
+
 	public void setCourseId(String courseId) {
-		this.courseId = courseId;
+		this.courseId = courseId.trim();
 	}
-	public void setCourseId(Integer courseId) {
-		this.courseId = courseId.toString();
-	}
+
 	public String getCourseName() {
 		return courseName;
 	}
+
 	public void setCourseName(String courseName) {
 		this.courseName = courseName.trim();
 	}
+
 	public String getCourseDescription() {
 		return courseDescription;
 	}
+
 	public void setCourseDescription(String courseDescription) {
 		this.courseDescription = courseDescription.trim();
 	}
@@ -243,7 +278,7 @@ public class Course implements Serializable {
 	public void setSection(int section) {
 		this.section = section;
 	}
-	
+
 	public String getSemester() {
 		return semester;
 	}
@@ -275,24 +310,45 @@ public class Course implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	public Set<CourseUsers> getUsers()
-	{
+
+	public Set<CourseUsers> getUsers() {
 		return users;
 	}
-	
-	public void setUsers(Set<CourseUsers> users)
-	{
+
+	public void setUsers(Set<CourseUsers> users) {
 		this.users = users;
 	}
-	
-	public Set<Announcements> getAnnouncements()
-	{
+
+	public Set<Announcements> getAnnouncements() {
 		return announcements;
 	}
-	
-	public void setAnnouncements(Set<Announcements> announcements)
-	{
+
+	public void setAnnouncements(Set<Announcements> announcements) {
 		this.announcements = announcements;
 	}
+
+	public Set<CourseMaterial> getMaterials() {
+		return materials;
+	}
+
+	public void setMaterials(Set<CourseMaterial> materials) {
+		this.materials = materials;
+	}
+
+	public Set<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(Set<Message> messages) {
+		this.messages = messages;
+	}
+
+	public Set<Assignments> getAssignments() {
+		return assignments;
+	}
+
+	public void setAssignments(Set<Assignments> assignments) {
+		this.assignments = assignments;
+	}
+	
 }

@@ -24,6 +24,11 @@ public class Courses implements java.io.Serializable {
 
 	public Courses() {
 	}
+	
+	public Courses(CourseSection section, Semester semester) {
+		this.semester = semester;
+		this.section = section;
+	}
 
 	public Courses(CourseSection section, Semester semester, 
 			String courseRootDirectory) {
