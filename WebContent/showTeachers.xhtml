@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets" 
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+<ui:composition template="/template/common/commonLayout.xhtml">
+  <ui:define name="content">
+    <h:messages />
+    	<f:view>
+	        <h:form>
+				#{viewAccountsBean.viewTeacherAccounts()}
+			 	<h:dataTable value="#{viewAccountsBean.users}" var="user" rules="rows" columns="2">
+			 		<h:column>
+			 			<h:commandButton action="#{viewAccountsBean.viewAccount(user.uid)}" value="Edit">
+		 				</h:commandButton>	
+			 		</h:column>
+					<h:column>
+						<f:facet name="header">User ID</f:facet>
+						<center>#{user.uid}</center>
+					</h:column>
+					<h:column>
+						<f:facet name="header">First Name</f:facet>
+						<center>#{user.firstName}</center>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Last Name</f:facet>
+						<center>#{user.lastName}</center>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Permission</f:facet>
+						<center>#{user.permission.permissionName}</center>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Private Directory</f:facet>
+						<center>#{user.privateDirectory}</center>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Email Address</f:facet>
+						<center>#{user.emailAddress}</center>
+					</h:column>
+				</h:dataTable>
+	        </h:form>
+        </f:view>
+  </ui:define>
+  </ui:composition>
+ </h:body>
+    
+</html>
