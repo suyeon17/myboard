@@ -127,7 +127,7 @@ CREATE  TABLE IF NOT EXISTS `myboard`.`Courses` (
   `course_id` INT NOT NULL AUTO_INCREMENT ,
   `course_section_id` INT NOT NULL ,
   `course_semester_id` INT NOT NULL ,
-  `course_root_directory` VARCHAR(45) NOT NULL ,
+  `course_root_directory` VARCHAR(45),
   PRIMARY KEY (`course_id`) ,
   INDEX `course_section_id` (`course_section_id` ASC) ,
   INDEX `course_semester_id` (`course_semester_id` ASC) ,
@@ -468,13 +468,13 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `myboard`;
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('00000000', 'John', 'Doe', 0, 'password', 0, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/00000000/', 0, 'johndoe@csuohio.edu');
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('11111111', 'Jane', 'Doe', 1, 'password', 1, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/11111111/', 0, 'janedoe@csuohio.edu');
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('22222222', 'Donald', 'Knuth', 1, 'password', 2, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/22222222/', 0, 'donaldknuth@csuohio.edu');
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('33333333', 'Steve', 'Jobs', 1, 'password', 3, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/33333333/', 0, 'stevejobs@csuohio.edu');
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('44444444', 'Paul', 'Erdos', 2, 'password', 2, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/44444444/', 0, 'paulerdos@csuohio.edu');
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('55555555', 'John', 'Smith', 2, 'password', 1, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/55555555/', 0, 'johnsmith@csuohio.edu');
-INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('66666666', 'Jane', 'Smith', 2, 'password', 3, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/6666666/', 0, 'janesmith@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('00000000', 'John', 'Doe', 0, 'password', 0, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/00000000/', 1, 'johndoe@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('11111111', 'Jane', 'Doe', 1, 'password', 1, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/11111111/', 1, 'janedoe@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('22222222', 'Donald', 'Knuth', 1, 'password', 2, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/22222222/', 1, 'donaldknuth@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('33333333', 'Steve', 'Jobs', 1, 'password', 3, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/33333333/', 1, 'stevejobs@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('44444444', 'Paul', 'Erdos', 2, 'password', 2, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/44444444/', 1, 'paulerdos@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('55555555', 'John', 'Smith', 2, 'password', 1, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/55555555/', 1, 'johnsmith@csuohio.edu');
+INSERT INTO `myboard`.`Users` (`uid`, `first_name`, `last_name`, `department`, `password`, `permission_id`, `creation_date`, `last_login`, `private_directory`, `active`, `email_address`) VALUES ('66666666', 'Jane', 'Smith', 2, 'password', 3, '2013-03-08 00:00:00', '2013-03-08 00:00:00', '/6666666/', 1, 'janesmith@csuohio.edu');
 
 COMMIT;
 
@@ -514,10 +514,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `myboard`;
-INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 1, 1, '/courses/1/');
-INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 2, 1, '/courses/2/');
-INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 3, 1, '/courses/3/');
-INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 4, 1, '/courses/4/');
+INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 1, 1, '1');
+INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 2, 1, '2');
+INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 3, 1, '3');
+INSERT INTO `myboard`.`Courses` (`course_id`, `course_section_id`, `course_semester_id`, `course_root_directory`) VALUES (NULL, 4, 1, '4');
 
 COMMIT;
 
@@ -590,16 +590,16 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `myboard`;
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 1, 1, 'Message 1', 'This is the message', '1.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 2, 1, 'Message 2', 'This is the message', '2.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 3, 1, 'Message 3', 'This is the message', '3.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 4, 2, 'Message 4', 'This is the message', '4.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 5, 2, 'Message 5', 'This is the message', '5.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 6, 3, 'Message 6', 'This is the message', '6.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 7, 3, 'Message 7', 'This is the message', '7.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 8, 3, 'Message 8', 'This is the message', '8.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 9, 4, 'Message 9', 'This is the message', '9.zip');
-INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 10, 4, 'Message 10', 'This is the message', '10.zip');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 1, 1, 'Message 1', 'This is the message', 'one.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 2, 1, 'Message 2', 'This is the message', 'two.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 3, 1, 'Message 3', 'This is the message', 'three.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 4, 2, 'Message 4', 'This is the message', 'four.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 5, 2, 'Message 5', 'This is the message', 'five.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 6, 3, 'Message 6', 'This is the message', 'six.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 7, 3, 'Message 7', 'This is the message', 'seven.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 8, 3, 'Message 8', 'This is the message', 'eight.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 9, 4, 'Message 9', 'This is the message', 'nine.txt');
+INSERT INTO `myboard`.`Message` (`message_id`, `parent_id`, `from_uid`, `course_id`, `title`, `message`, `attachment_filename`) VALUES (NULL, NULL, 10, 4, 'Message 10', 'This is the message', 'ten.txt');
 
 COMMIT;
 
@@ -665,9 +665,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `myboard`;
-INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus1', 'Course Syllabus 1', '2013-03-08 00:00:00', 1, '1.pdf', 1);
-INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus2', 'Course Syllabus 2', '2013-03-08 00:00:00', 4, '2.pdf', 2);
-INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus3', 'Course Syllabus 3', '2013-03-08 00:00:00', 6, '3.pdf', 3);
-INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus4', 'Course Syllabus 4', '2013-03-08 00:00:00', 9, '4.pdf', 4);
+INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus1', 'Course Syllabus 1', '2013-03-08 00:00:00', 1, 'syllabus.txt', 1);
+INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus2', 'Course Syllabus 2', '2013-03-08 00:00:00', 4, 'syllabus.txt', 2);
+INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus3', 'Course Syllabus 3', '2013-03-08 00:00:00', 6, 'syllabus.txt', 3);
+INSERT INTO `myboard`.`Course_Material` (`course_material_id`, `title`, `description`, `upload_date`, `creator_uid`, `material_filename`, `course_id`) VALUES (NULL, 'Syllabus4', 'Course Syllabus 4', '2013-03-08 00:00:00', 9, 'syllabus.txt', 4);
 
 COMMIT;
