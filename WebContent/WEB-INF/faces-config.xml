@@ -35,6 +35,18 @@
         </managed-property>
     </managed-bean>
     
+    <managed-bean>
+        <managed-bean-name>viewAccountsBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.ViewAccountsBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
+    <managed-bean>
+        <managed-bean-name>viewSingleAccountBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.ViewSingleAccountBean</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    
     <!-- ************** Navigation Rules ************** -->
         <navigation-rule>
         <from-view-id>/loginPage.xhtml</from-view-id>
