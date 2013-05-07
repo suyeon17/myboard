@@ -28,7 +28,7 @@ public class AdditionalCalendarEntriesDao extends BaseDao {
 		}
 	}
 	
-	public AdditionalCalendarEntries read(int id) {
+	public AdditionalCalendarEntries read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AdditionalCalendarEntries instance = null;
 		
@@ -45,12 +45,12 @@ public class AdditionalCalendarEntriesDao extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<AdditionalCalendarEntries> readAll() {
+	public List<AdditionalCalendarEntries> readAll(AdditionalCalendarEntries instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<AdditionalCalendarEntries> result = null;
 			
 		try {
-			result = (List<AdditionalCalendarEntries>)super.readAll(entityFullName, new AdditionalCalendarEntries());
+			result = (List<AdditionalCalendarEntries>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

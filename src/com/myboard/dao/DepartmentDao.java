@@ -28,7 +28,7 @@ public class DepartmentDao extends BaseDao {
 		}
 	}
 	
-	public Department read(int id) {
+	public Department read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Department instance = null;
 		
@@ -45,12 +45,12 @@ public class DepartmentDao extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Department> readAll() {
+	public List<Department> readAll(Department instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<Department> result = null;
 		
 		try {
-			result = (List<Department>)super.readAll(entityFullName, new Department());
+			result = (List<Department>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

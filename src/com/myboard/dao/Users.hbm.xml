@@ -38,13 +38,13 @@
         <property name="emailAddress" type="string">
             <column name="email_address" length="45" />
         </property>
-		<set name="courseUsers" table="Course_Users" inverse="true" lazy="false" fetch="select">
+		<set name="courseUsers" table="Course_Users" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="uid" length="8" not-null="true" />
             </key>
             <one-to-many class="com.myboard.dao.CourseUsers" />
         </set>
-        <set name="additionalCalendarEntries" table="Additional_Calendar_Entries" inverse="true" lazy="false" fetch="select">
+        <set name="additionalCalendarEntries" table="Additional_Calendar_Entries" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="uid" length="8" not-null="true" />
             </key>

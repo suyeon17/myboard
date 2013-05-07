@@ -16,6 +16,7 @@ public class AssignmentsDao extends BaseDao{
 
 	public void create(Assignments transientInstance) {
 		log.debug("creating " + entitySimpleName + " instance");
+		
 		try {
 			super.create(transientInstance);
 			log.debug("creating " + entitySimpleName + " successful");
@@ -27,7 +28,7 @@ public class AssignmentsDao extends BaseDao{
 		}
 	}
 	
-	public Assignments read(int id) {
+	public Assignments read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Assignments instance = null;
 		
@@ -44,12 +45,12 @@ public class AssignmentsDao extends BaseDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Assignments> readAll() {
+	public List<Assignments> readAll(Assignments instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<Assignments> result = null;
 						
 		try {
-			result = (List<Assignments>)super.readAll(entityFullName, new Assignments());
+			result = (List<Assignments>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

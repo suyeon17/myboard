@@ -28,7 +28,7 @@ public class MessageDao extends BaseDao {
 		}
 	}
 	
-	public Message read(int id) {
+	public Message read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Message instance = null;
 		
@@ -45,12 +45,12 @@ public class MessageDao extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<Message> readAll() {
+	public List<Message> readAll(Message instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<Message> result = null;
 		
 		try {
-			result = (List<Message>)super.readAll(entityFullName, new Message());
+			result = (List<Message>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

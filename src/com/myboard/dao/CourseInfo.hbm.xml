@@ -23,7 +23,7 @@
         <property name="credits" type="int">
             <column name="credits" not-null="true" />
         </property>
-        <set name="courseSections" table="Course_Section" inverse="true" lazy="false" fetch="select">
+        <set name="courseSections" table="Course_Section" inverse="true" lazy="true" fetch="select">
            <key>
                <column name="course_info_id" not-null="true" />
            </key>

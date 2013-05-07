@@ -17,31 +17,31 @@
         <property name="courseRootDirectory" type="string">
             <column name="course_root_directory" length="45" not-null="true" />
         </property>
-        <set name="materials" table="Course_Material" inverse="true" lazy="false" fetch="select">
+        <set name="materials" table="Course_Material" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="course_id" not-null="true" />
             </key>
             <one-to-many class="com.myboard.dao.CourseMaterial" />
         </set>
-        <set name="announcements" table="Announcements" inverse="true" lazy="false" fetch="select">
+        <set name="announcements" table="Announcements" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="course_id" not-null="true" />
             </key>
             <one-to-many class="com.myboard.dao.Announcements" />
         </set>
-        <set name="users" table="Course_Users" inverse="true" lazy="false" fetch="select">
+        <set name="users" table="Course_Users" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="course_id" not-null="true" />
             </key>
             <one-to-many class="com.myboard.dao.CourseUsers" />
         </set>
-        <set name="messages" table="Message" inverse="true" lazy="false" fetch="select">
+        <set name="messages" table="Message" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="course_id" not-null="true" />
             </key>
             <one-to-many class="com.myboard.dao.Message" />
         </set>
-        <set name="assignments" table="Assignments" inverse="true" lazy="false" fetch="select">
+        <set name="assignments" table="Assignments" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="course_id" not-null="true" />
             </key>

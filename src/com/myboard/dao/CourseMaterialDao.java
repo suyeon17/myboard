@@ -8,9 +8,7 @@ import org.apache.commons.logging.LogFactory;
 import com.myboard.exception.EntityAlreadyExistsException;
 import com.myboard.exception.EntityNotFoundException;
 
-public class CourseMaterialDao extends BaseDao {
-
-	private static final Log log = LogFactory.getLog(CourseMaterialDao.class);
+public class CourseMaterialDao extends BaseDao ourseMaterialDao.class);
 	private static final String entityFullName = CourseMaterial.class.getName();
 	private static final String entitySimpleName = CourseMaterial.class.getSimpleName();
 
@@ -67,13 +65,7 @@ public class CourseMaterialDao extends BaseDao {
 		try {
 			super.update(instance);
 			log.debug(entitySimpleName + " update successful");
-		} catch (RuntimeException re) {
-			log.error(entitySimpleName + " update failed", re);
-			throw re;
-		}
-	}
-
-	public void delete(CourseMaterial persistentInstance) {
+		} catch (R(CourseMaterial persistentInstance) {
 		log.debug("deleting " + entitySimpleName + " instance");
 		
 		try {

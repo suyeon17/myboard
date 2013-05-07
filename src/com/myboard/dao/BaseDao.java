@@ -50,7 +50,7 @@ public class BaseDao {
 		}
 	}
 	
-	public Object read(String entityClassFullName, int id) throws EntityNotFoundException{		
+	public Object read(String entityClassFullName, String id) throws EntityNotFoundException{		
 		Session session = null;
 		Transaction transaction = null;
 		
@@ -73,7 +73,7 @@ public class BaseDao {
 		}
 	}
 	
-	public Object read(String entityClassFullName, String id) throws EntityNotFoundException{		
+	public Object read(String entityClassFullName, int id) throws EntityNotFoundException{		
 		Session session = null;
 		Transaction transaction = null;
 		
@@ -84,7 +84,7 @@ public class BaseDao {
 			transaction.commit();
 			
 			if(instance == null){
-				throw new EntityNotFoundException(entityClassFullName + " not found for id = " + id);
+				throw new EntityNotFoundException(entityClassFullName + " not foe + " not found for id = " + id);
 			}
 			
 			return instance;
@@ -132,7 +132,7 @@ public class BaseDao {
 		} catch (RuntimeException re) {
 			if(transaction != null){transaction.rollback();}
 			throw re;
-		}finally{
+		}finally {
 			if(session != null && session.isOpen()){session.close();}
 		}
 	}

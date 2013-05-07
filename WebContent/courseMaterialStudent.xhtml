@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+      <h:body>
+      
+      	<ui:composition template="/template/common/commonLayout.xhtml">
+      		
+      		<ui:define name="content">
+      		
+      		<h2 align="center" style="background:#0087BD; color:white;">Student Materials</h2>
+      		
+      		
+      		<f:view>
+      			<h:form> 
+	      			
+		            #{materialTeacherBean.getList()}
+		            
+					<t:dataTable id="table" value="#{materialTeacherBean.dataList}" var="o" width="100%" 
+					border="1" cellpadding="5" rules="rows" preserveDataModel="true" rowIndexVar="row">
+ 
+		    			<h:column>
+		    				<!-- column header -->
+		    				<f:facet name="header">Course Material ID</f:facet>
+		    				<!-- row record -->
+		    				<center> <h:outputText value="#{o[0]}" /> </center>
+		    			</h:column>
+		 
+		    			<h:column>
+		    				<f:facet name="header">Title</f:facet>
+		    				<center> <h:outputText value="#{o[1]}" /> </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Description</f:facet>
+		    				<center> <h:outputText value="#{o[2]}" /> </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Upload Date</f:facet>
+		    				<center> <h:outputText value="#{o[3]}" /> </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Creator UID</f:facet>
+		    				<center> <h:outputText value="#{o[4]}" /> </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Material Filename</f:facet>
+		    				<center> <h:outputText value="#{o[5]}" /> </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Course ID</f:facet>
+		    				<center> <h:outputText value="#{o[6]}" /> </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Download</f:facet>
+		    				<h:commandButton value="\/" action="#{materialStudentBean.downloadPage}" class="button-style">
+		    				
+		    				<f:setPropertyActionListener target="#{materialStudentBean.fileName}" value="#{o[5]}" />
+		    				
+		    				</h:commandButton>
+		    			</h:column>
+		    			
+		    		</t:dataTable>
+		    		
+				</h:form>    
+       		</f:view>
+       		
+      	    </ui:define>
+      		
+      </ui:composition>
+      
+	</h:body>
+</html>

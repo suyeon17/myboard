@@ -2,8 +2,6 @@ package com.myboard.dao;
 
 // Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,8 +11,6 @@ public class AssignmentSubmission implements java.io.Serializable {
 
 	private static final long serialVersionUID = 5547185119652612040L;
 
-	public static final String DIR_NAME = "AssignmentSubmissions/";
-	
 	private Integer submissionId;
 	private Assignments assignment;
 	private CourseUsers user;
@@ -24,8 +20,6 @@ public class AssignmentSubmission implements java.io.Serializable {
 	private String submissionFilename;
 	private String comments;
 
-	private ArrayList<AssignmentFileParser.Question> questions;
-	
 	public AssignmentSubmission() {
 	}
 
@@ -111,46 +105,5 @@ public class AssignmentSubmission implements java.io.Serializable {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	
-	/*
-	 * Reads a previously submitted assignment
-	 */
-	public ArrayList<AssignmentFileParser.Question> getSubmission(){
-		//Lazy loading of Assignment Submission
-		String path = getAbsolutePath();
-		if(this.questions == null && path!= null){
-			try{
-				this.questions = AssignmentFileParser.getFromXML(path+this.submissionId.toString()+".xml");
-			}catch(Exception e){
-				return null;
-			}
-		}
-		return this.questions;
-	}
-	
-	public void setSubmission(ArrayList<AssignmentFileParser.Question> questions){
-		this.questions = questions;
-	}
-	
-	public String getAbsolutePath(){
-		if(assignment == null)	return null;
-		return assignment.getAbsolutePath()+DIR_NAME;
-	}
-	
-	/*
-	 * Call this method when writing an assignment submission
-	 * You must make sure to set the questions by using the setSubmission() method above
-	 * Must be called after the assignment submission is already written to the database
-	 * so that this.submissionId is instantiated
-	 */
-	public boolean writeSubmission(){
-		String path = getAbsolutePath();
-		if(this.questions == null || this.questions.size() < 1 || path == null) return false;
-		try {
-			AssignmentFileParser.writeToXML(path+this.submissionId.toString()+".xml", this.questions);
-		} catch (IOException e) {
-			return false;
-		}
-		return true;
-	}
+
 }

@@ -28,7 +28,7 @@ public class AdditionalGradeEntriesDao extends BaseDao {
 		}
 	}
 	
-	public AdditionalGradeEntries read(int id) {
+	public AdditionalGradeEntries read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AdditionalGradeEntries instance = null;
 		
@@ -45,12 +45,12 @@ public class AdditionalGradeEntriesDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AdditionalGradeEntries> readAll() {
+	public List<AdditionalGradeEntries> readAll(AdditionalGradeEntries instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<AdditionalGradeEntries> result = null;
 				
 		try {
-			result = (List<AdditionalGradeEntries>)super.readAll(entityFullName, new AdditionalGradeEntries());
+			result = (List<AdditionalGradeEntries>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

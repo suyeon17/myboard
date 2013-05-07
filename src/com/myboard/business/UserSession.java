@@ -57,9 +57,4 @@ public class UserSession implements Serializable {
 	public boolean isLoggedIn() {
 		return this.user != null;
 	}
-	
-	public static UserSession getCurrentSession(){
-		return (UserSession)FacesContext.getCurrentInstance()
-				.getExternalContext().getSessionMap().get("userSession");
-	}
 }

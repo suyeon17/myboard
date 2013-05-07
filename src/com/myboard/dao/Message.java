@@ -12,8 +12,6 @@ public class Message implements java.io.Serializable {
 
 	private static final long serialVersionUID = 8596488949762199031L;
 
-	public static final String DIR_NAME = "MessageAttachments/";
-	
 	private Integer messageId;
 	private Integer parentId;
 	private Courses course;
@@ -107,10 +105,5 @@ public class Message implements java.io.Serializable {
 
 	public void setRecipients(Set<MessageRecipient> recipients) {
 		this.recipients = recipients;
-	}
-	
-	private String getAbsolutePath(){
-		if(course == null)	return null;
-		return course.getAbsolutePath()+DIR_NAME;
 	}
 }

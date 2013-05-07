@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"  
+	  xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+    <h:body>
+    	
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    	
+    	<ui:define name="sidebar">
+      		
+			<h:form >     		
+   				<h:link value="Back to Material" outcome="courseMaterialTeacher" class="button-style"/>
+   			</h:form> 
+      			
+      	</ui:define>
+    	
+    	<ui:define name="content">
+    	
+    	<!-- CSU's colors are forest green and white. Hex triplet for forest green = #228B22  -->
+    	<h2 align="center" style="background:#228B22; color:white;">Upload Material</h2>
+    	
+    	<f:view> 
+
+    		<!-- Upload a file. enctype needed to work properly -->
+      		<h:form id="uploadForm" enctype="multipart/form-data" title="Upload Material" >       
+      			<br/>
+      			<h:panelGrid id="upGrid" align="left" columns="1">
+      			
+      				<h:panelGroup id="input" >
+			            <t:inputFileUpload id="fileupload"
+			                               value="#{materialTeacherBean.upFile}"
+			                               storage="file"
+			                               styleClass="button-style"
+			                               required="true"
+			                               requiredMessage="Validation Error: A file must be chosen."
+			                               maxlength="200000"/>
+			   
+			            <h:commandButton value="Upload"  action="#{materialTeacherBean.upload}"  class="button-style"/>
+			        </h:panelGroup>
+			        
+			        <h:panelGroup>
+			        	<br/>
+			        	<h:outputText value="Title	" />
+			        	<h:inputText value="#{materialTeacherBean.title}"/>
+			        </h:panelGroup>
+			        
+			        <h:panelGroup>
+			        	<br/>
+			        	<h:outputText value="Description	"/>
+			        	<h:inputTextarea value="#{materialTeacherBean.description}"/>
+			        </h:panelGroup>
+			        
+			        <br/>
+			        <h:messages />
+			        
+	            </h:panelGrid>
+	            
+	            
+	            <h:outputText value="#{materialTeacherBean.title}"/>
+	            <br/>
+	       	    <h:outputText value="#{materialTeacherBean.uploadDate}"/>
+	            
+	            
+			</h:form>
+		</f:view>
+		</ui:define>
+    	</ui:composition>
+    	
+   </h:body>
+
+</html>
+
+
+
+
+
+			            
+			            

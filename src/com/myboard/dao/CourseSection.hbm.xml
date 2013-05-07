@@ -14,7 +14,7 @@
         <property name="section" type="int">
             <column name="section" not-null="true" />
         </property>
-		<set name="courses" table="Courses" inverse="true" lazy="false" fetch="select">
+		<set name="courses" table="Courses" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="course_section_id" not-null="true" />
             </key>

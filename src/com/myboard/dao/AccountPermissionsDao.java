@@ -28,7 +28,7 @@ public class AccountPermissionsDao extends BaseDao {
 		}
 	}
 	
-	public AccountPermissions read(int id) {
+	public AccountPermissions read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AccountPermissions instance = null;
 		
@@ -45,12 +45,12 @@ public class AccountPermissionsDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AccountPermissions> readAll() {
+	public List<AccountPermissions> readAll(AccountPermissions instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<AccountPermissions> result = null;
 		
 		try {
-			result = (List<AccountPermissions>)super.readAll(entityFullName, new AccountPermissions());
+			result = (List<AccountPermissions>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

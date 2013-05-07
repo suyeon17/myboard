@@ -34,22 +34,17 @@
             <value>#{userSession}</value>
         </managed-property>
     </managed-bean>
-    <managed-bean>
-    	<managed-bean-name>dashboardBean</managed-bean-name>
-    	<managed-bean-class>com.myboard.bean.DashboardBean</managed-bean-class>
-    	<managed-bean-scope>request</managed-bean-scope>
-    </managed-bean>
     
     <managed-bean>
-        <managed-bean-name>viewAccountsBean</managed-bean-name>
-        <managed-bean-class>com.myboard.bean.ViewAccountsBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-name>materialTeacherBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.MaterialTeacherBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     
-    <managed-bean>
-        <managed-bean-name>viewSingleAccountBean</managed-bean-name>
-        <managed-bean-class>com.myboard.bean.ViewSingleAccountBean</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+     <managed-bean>
+        <managed-bean-name>materialStudentBean</managed-bean-name>
+        <managed-bean-class>com.myboard.bean.MaterialStudentBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     
     <!-- ************** Navigation Rules ************** -->
@@ -90,5 +85,25 @@
             <to-view-id>/testUser.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
-
+     <navigation-rule>
+        <from-view-id>/courseMaterialTeacher.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>uploadFile</from-outcome>
+            <to-view-id>/uploadFile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/uploadFile.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>fileUploaded</from-outcome>
+            <to-view-id>/uploadFile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+     <navigation-rule>
+        <from-view-id>/courseMaterialStudent.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>downloadFile</from-outcome>
+            <to-view-id>/downloadFile.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

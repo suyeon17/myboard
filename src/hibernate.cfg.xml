@@ -12,7 +12,7 @@
         <!-- Disable the second-level cache  -->
         <property name="hibernate.cache.provider_class">org.hibernate.cache.internal.NoCacheProvider</property>
         <!-- Echo all executed SQL to stdout -->
-        <property name="hibernate.show_sql">false</property>
+        <property name="hibernate.show_sql">true</property>
         
         <mapping resource="com/myboard/dao/CourseRoles.hbm.xml" />
         <mapping resource="com/myboard/dao/AssignmentTypes.hbm.xml" />
@@ -32,8 +32,5 @@
         <mapping resource="com/myboard/dao/Semester.hbm.xml" />
         <mapping resource="com/myboard/dao/MessageRecipient.hbm.xml" />
         <mapping resource="com/myboard/dao/Assignments.hbm.xml" />
-        <mapping resource="com/myboard/dao/MessageBoard.hbm.xml" />
-        <mapping resource="com/myboard/dao/MessageBoardMessages.hbm.xml" />
-        
     </session-factory>
 </hibernate-configuration>

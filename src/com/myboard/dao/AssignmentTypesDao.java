@@ -28,7 +28,7 @@ public class AssignmentTypesDao extends BaseDao {
 		}
 	}
 	
-	public AssignmentTypes read(int id) {
+	public AssignmentTypes read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AssignmentTypes instance = null;
 		
@@ -45,12 +45,12 @@ public class AssignmentTypesDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AssignmentTypes> readAll() {
+	public List<AssignmentTypes> readAll(AssignmentTypes instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<AssignmentTypes> result = null;
 							
 		try {
-			result = (List<AssignmentTypes>)super.readAll(entityFullName, new AssignmentTypes());
+			result = (List<AssignmentTypes>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

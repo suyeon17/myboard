@@ -28,7 +28,7 @@ public class AssignmentSubmissionDao extends BaseDao{
 		}
 	}
 	
-	public AssignmentSubmission read(int id) {
+	public AssignmentSubmission read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AssignmentSubmission instance = null;
 		
@@ -45,12 +45,12 @@ public class AssignmentSubmissionDao extends BaseDao{
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<AssignmentSubmission> readAll() {
+	public List<AssignmentSubmission> readAll(AssignmentSubmission instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<AssignmentSubmission> result = null;
 							
 		try {
-			result = (List<AssignmentSubmission>)super.readAll(entityFullName, new AssignmentSubmission());
+			result = (List<AssignmentSubmission>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

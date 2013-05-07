@@ -2,6 +2,8 @@ package com.myboard.bean;
 
 import java.io.Serializable;
 
+import javax.faces.context.FacesContext;
+
 import com.myboard.business.User;
 import com.myboard.business.UserSession;
 
@@ -47,7 +49,7 @@ public class LoginBean implements Serializable {
 	public String login(){
 		User user = new User(this.username);
 		user.readUser();
-
+		
 		if(!user.getFirstName().isEmpty() && !user.getLastName().isEmpty() && !user.getPassword().isEmpty()){
 			if(this.password.equals(user.getPassword())){
 				userSession.setUser(user);

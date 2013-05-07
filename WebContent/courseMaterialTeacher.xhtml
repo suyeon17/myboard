@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:f="http://java.sun.com/jsf/core" 
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+      
+      <h:body>
+      
+      	<ui:composition template="/template/common/commonLayout.xhtml">
+      	
+      		<ui:define name="sidebar">
+      		
+				<h:form >     		
+      				<h:commandButton value="Upload" action="#{materialTeacherBean.uploadPage}" 
+      				 class="button-style" />
+      			</h:form> 
+      			
+      		</ui:define>
+      		
+      		<ui:define name="content">
+      		
+      		<h2 align="center" style="background:#228B22; color:white;">Teacher Materials</h2>
+      		
+      		
+      		<f:view>
+      			<h:form> 
+	      		
+		            #{materialTeacherBean.getList()}
+		            
+					<h:dataTable value="#{materialTeacherBean.dataList}" var="o" width="100%" 
+					border="1" cellpadding="5" rules="rows">
+ 
+		    			<h:column>
+		    				<!-- column header -->
+		    				<f:facet name="header">Course Material ID</f:facet>
+		    				<!-- row record -->
+		    				<center> #{o[0]} </center>
+		    			</h:column>
+		 
+		    			<h:column>
+		    				<f:facet name="header">Title</f:facet>
+		    				<center> #{o[1]} </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Description</f:facet>
+		    				<center> #{o[2]} </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Upload Date</f:facet>
+		    				<center> #{o[3]} </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Creator UID</f:facet>
+		    				<center> #{o[4]} </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Material Filename</f:facet>
+		    				<center> #{o[5]} </center>
+		    			</h:column>
+		    			
+		    			<h:column>
+		    				<f:facet name="header">Course ID</f:facet>
+		    				<center> #{o[6]} </center>
+		    			</h:column>
+		    			
+		    		</h:dataTable>
+
+				</h:form>    
+       		</f:view>
+       		
+      	    </ui:define>
+      		
+      </ui:composition>
+      
+	</h:body>
+</html>

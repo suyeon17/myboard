@@ -74,12 +74,12 @@ public class User implements Serializable {
 	
 	private com.myboard.dao.Department getDeptObjById(){
 		DepartmentDao dao = new DepartmentDao();
-		return dao.read(this.department);
+		return dao.read(this.department+"");
 	}
 	
 	private com.myboard.dao.AccountPermissions getPermissionObjById(){
 		AccountPermissionsDao dao = new AccountPermissionsDao();
-		return dao.read(this.permissionId);
+		return dao.read(this.permissionId+"");
 	}
 	
 	public void updateUser(){		

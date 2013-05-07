@@ -28,7 +28,7 @@ public class AnnouncementsDao extends BaseDao {
 		}
 	}
 	
-	public Announcements read(int id) {
+	public Announcements read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Announcements instance = null;
 		
@@ -45,12 +45,12 @@ public class AnnouncementsDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Announcements> readAll() {
+	public List<Announcements> readAll(Announcements instance) {
 	log.debug("readAll " + entitySimpleName);
 	List<Announcements> result = null;
 					
 		try {
-			result = (List<Announcements>)super.readAll(entityFullName, new Announcements());
+			result = (List<Announcements>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

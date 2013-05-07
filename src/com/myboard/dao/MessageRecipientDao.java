@@ -29,7 +29,7 @@ public class MessageRecipientDao extends BaseDao {
 		}
 	}
 	
-	public MessageRecipient read(int id) {
+	public MessageRecipient read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		MessageRecipient instance = null;
 		
@@ -46,12 +46,12 @@ public class MessageRecipientDao extends BaseDao {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public List<MessageRecipient> readAll() {
+	public List<MessageRecipient> readAll(MessageRecipient instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<MessageRecipient> result = null;
 		
 		try {
-			result = (List<MessageRecipient>)super.readAll(entityFullName, new MessageRecipient());
+			result = (List<MessageRecipient>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);

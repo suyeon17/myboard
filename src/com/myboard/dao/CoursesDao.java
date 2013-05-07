@@ -28,7 +28,7 @@ public class CoursesDao extends BaseDao {
 		}
 	}
 	
-	public Courses read(int id) {
+	public Courses read(String id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Courses instance = null;
 		
@@ -45,12 +45,12 @@ public class CoursesDao extends BaseDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<Courses> readAll() {
+	public List<Courses> readAll(Courses instance) {
 		log.debug("readAll " + entitySimpleName);
 		List<Courses> result = null;
 		
 		try {
-			result = (List<Courses>)super.readAll(entityFullName, new Courses());
+			result = (List<Courses>)super.readAll(entityFullName, instance);
 			log.debug(entitySimpleName + " readAll successful, instance found");
 		} catch(EntityNotFoundException ex){
 			log.error(entitySimpleName + " readAll successful, no instance found", ex);
