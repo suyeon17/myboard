@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:t="http://myfaces.apache.org/tomahawk">
+    <h:body>
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+   			<ui:define name="content">
+				<f:view>
+					<h:outputStylesheet library="css" name="dashboard.css" target="head"/>
+					<h:panelGroup id="calendar_container">
+						<h:form>
+	    					<table id="calendar">
+	    						<tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr>
+		    					<c:forEach var="week" items="#{dashboardBean.weeks}">
+		    						<tr id="week_#{week.offset}">
+				    					<c:forEach var="day" items="#{week.days}">
+				    						<td>
+				    							<t:panelGroup id="_#{day.dateMillis}" styleClass="day_container #{(day.today)? 'today':''}"
+				    								onmouseover="document.getElementById('tooltip_#{day.dateMillis}').style.display = 'block'"
+				    								onmouseout="document.getElementById('tooltip_#{day.dateMillis}').style.display = 'none'"
+				    								>
+				    								
+				    								<div class="spacer"></div>
+				    								<div class="underlay"></div>
+					    								<h:outputText styleClass="day_month_label #{day.monthString}" value="#{day.monthString}"/>
+					    								<h:outputText styleClass="day_date_label" value="#{day.day}"/>
+					    								<h:panelGroup styleClass="icon_bar">
+															<c:forEach var="eventManager" items="#{day.eventManagers}">
+																<h:outputText value="#{eventManager.icon}" styleClass="icon #{eventManager.highestStatusString}" escape="false"/>
+															</c:forEach>
+					    								</h:panelGroup>
+				    								<div class="overlay"></div>
+				    								<t:outputText id="tooltip_#{day.dateMillis}" forceId="true" value="#{day.tooltip}" styleClass="tooltip" escape="false"/>
+				    								
+				    								<f:ajax event="click"
+				    										listener="#{dashboardBean.ajaxListener(day.dateMillis)}"
+				    										render="popup_wrapper"/>
+				    							</t:panelGroup>
+				    						</td>
+				    					</c:forEach>
+			    					</tr>
+		    					</c:forEach>
+	    					</table>
+	    				</h:form>
+	    				<h:panelGroup id="popup_wrapper">
+		    				<h:panelGroup id="popup" rendered="#{dashboardBean.renderPopup}">
+		    					<div id="popup_underlay" onclick="document.getElementById('popup').style.display = 'none';"></div>
+		    					<h:panelGroup id="popup_content">
+		    						<h:commandButton id="popup_close" value="close" onclick="document.getElementById('popup').style.display = 'none';"/>
+		    						<h:outputText id="popup_day_label" value="#{dashboardBean.selectedDay.fullDateString}"/>
+		    						<h:panelGroup id="popup_internal_content">
+										<c:forEach var="eventManager" items="#{dashboardBean.selectedDay.eventManagers}">
+											<h:outputText value="#{eventManager.headerText}" styleClass="event_header"/>
+											<h:panelGroup rendered="#{eventManager.hasEvents()}">
+												<c:forEach var="event" items="#{eventManager.events}">
+													<h:outputLink value="#{event.url}">
+														<h:outputText value="#{event.string}"/>
+													</h:outputLink>
+												</c:forEach>
+											</h:panelGroup>
+											<h:panelGroup rendered="#{!eventManager.hasEvents()}">
+												<h:outputText value="none for this day"/>
+											</h:panelGroup>
+										</c:forEach>
+		    						</h:panelGroup>
+		    					</h:panelGroup>
+		    				</h:panelGroup>
+	    				</h:panelGroup>
+					</h:panelGroup>
+    			</f:view>
+   			</ui:define>
+   			<ui:define name="sidebar"/>
+    	</ui:composition>
+    </h:body>
+</html>

@@ -1,0 +1,186 @@
+@font-face {
+  font-family: "FontAwesome";
+  src:	url("/myboard/javax.faces.resource/font/fontawesome-webfont.eot.jsf?ln=common");
+  src:	url("/myboard/javax.faces.resource/font/fontawesome-webfont.eot.jsf?ln=common?#iefix") format('eot'),
+  		url("/myboard/javax.faces.resource/font/fontawesome-webfont.woff.jsf?ln=common") format('woff'),
+  		url("/myboard/javax.faces.resource/font/fontawesome-webfont.ttf.jsf?ln=common") format('truetype'),
+  		url("/myboard/javax.faces.resource/font/fontawesome-webfont.svg.jsf?ln=common#FontAwesome") format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* #353839 = onyx black */
+#calendar_container {
+    display:block;
+    position:relative;
+	width:800px; /*designed to this width*/
+	height:auto;
+}
+#calendar {
+	font-family:Arial;
+
+	border-collapse:collapse;
+	width:800px;
+	height:auto;
+	
+	table-layout:fixed;
+	margin-left:1px; /*fix for firefox border missing on left*/
+}
+#calendar td{ border: 1px solid #353839; }
+#calendar th {
+    text-align:left;
+    font-size:x-small;
+}
+#calendar td { padding:0px; }
+.day_container {
+	position:relative;
+	
+	width:100%;
+	height:auto;
+	
+	cursor:pointer;
+}
+.day_container * { display:block; }
+.day_container .spacer { padding-top:50%; }
+.day_container .day_month_label {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	
+	padding-top:3px;
+	padding-left:5px;
+	padding-bottom:1px;
+	color:#353839; /*onyx black*/
+}
+.day_container .day_date_label {
+	position:absolute;
+	top:5px;
+	right:5px;
+	
+	font-weight:bold;
+	font-size:x-large;
+	
+	color:#353839; /*onyx black*/
+}
+.day_container .icon_bar {
+	position:absolute;
+	bottom:0;
+	left:0;
+	margin:5px;
+}
+.day_container .icon_bar .icon {
+	display:inline;
+	font-family:FontAwesome;
+	margin-right:5px;	
+}
+
+/*icon colors*/
+.icon.LIGHTGRAY {   color:lightgray; }
+.icon.RED {         color:red; }
+.icon.ORANGE {      color:orange; }
+.icon.YELLOW {      color:yellow; }
+
+.tooltip {
+	display:none; /*start in off state*/
+	
+    position:absolute;
+    top:100%; /*show below day*/
+    
+    white-space:nowrap; /*sets width to length of text*/
+    background-color:yellow; /*TODO better bg color*/
+    z-index:100; /*show overtop everything*/
+}
+.overlay,.underlay {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+}
+
+.today .overlay { /*makes today have a blue border*/
+	border-style: outset;
+	border-width: 2px;
+	border-color: blue;
+}
+.today .underlay {} /*if needed, can set the underlay bg to a color for today*/
+
+/*colors for month headers*/
+.January {	background-color:#d0e2f2; }
+.February {	background-color:#fdb791; }
+.March {	background-color:#7bc833; }
+.April {	background-color:#FFF06A; }
+.May {		background-color:#ABFF73; }
+.June {		background-color:#F7DE00; }
+.July {		background-color:#DAAF85; }
+.August {	background-color:#8DC7BB; }
+.September {background-color:#93BF96; }
+.October {	background-color:gray; }
+.November { background-color:#FF9331; }
+.December { background-color:#61F200; }
+
+
+#popup { /*stretch to fit overtop entire calendar*/
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+}
+#popup_underlay {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	right:0;
+	
+	background-color:rgb(0,0,0); /*support for browsers that don't allow rgba*/
+	background-color:rgba(0,0,0,0.25);
+}
+#popup_content {
+	position:absolute;
+	top:10%;
+	bottom:10%;
+	left:25%;
+	right:25%;
+	
+	background-color:white;
+	border-style:ridge;
+	border-width:2px;
+	overflow-y:scroll;
+}
+#popup_day_label {
+	position:absolute;
+	top:0;
+	left:0;
+	
+	font-family:serif;
+	font-size:xx-large;
+	color:#353839;
+	
+	padding:3px;
+	
+	border-bottom-style: solid;
+	border-right-style: solid;
+	border-width:2px;	
+}
+#popup_close {
+	position:absolute;
+	top:0;
+	right:0;
+}
+#popup_internal_content {
+    display:block;
+	margin-top:60px;
+	margin-left:5px;
+	margin-right:5px;
+}
+#popup_internal_content * {
+    display:block;
+}
+#popup_internal_content .event_header {
+    margin-top:25px;
+	font-size:large;
+	font-family:'Arial Black';
+}

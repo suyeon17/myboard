@@ -34,6 +34,11 @@
             <value>#{userSession}</value>
         </managed-property>
     </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>dashboardBean</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.DashboardBean</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     
     <managed-bean>
         <managed-bean-name>viewAccountsBean</managed-bean-name>
