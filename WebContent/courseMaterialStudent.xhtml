@@ -10,7 +10,6 @@
       <h:body>
       
       	<ui:composition template="/template/common/commonLayout.xhtml">
-      	
       		
       		<ui:define name="content">
       		
@@ -19,51 +18,60 @@
       		
       		<f:view>
       			<h:form> 
-	      		
+	      			
 		            #{materialTeacherBean.getList()}
 		            
-					<h:dataTable value="#{materialTeacherBean.dataList}" var="o" columns="2" width="100%" 
-					border="1" cellpadding="2" rules="rows">
+					<t:dataTable id="table" value="#{materialTeacherBean.dataList}" var="o" width="100%" 
+					border="1" cellpadding="5" rules="rows" preserveDataModel="true" rowIndexVar="row">
  
 		    			<h:column>
 		    				<!-- column header -->
 		    				<f:facet name="header">Course Material ID</f:facet>
 		    				<!-- row record -->
-		    				<center> #{o[0]} </center>
+		    				<center> <h:outputText value="#{o[0]}" /> </center>
 		    			</h:column>
 		 
 		    			<h:column>
 		    				<f:facet name="header">Title</f:facet>
-		    				<center> #{o[1]} </center>
+		    				<center> <h:outputText value="#{o[1]}" /> </center>
 		    			</h:column>
 		    			
 		    			<h:column>
 		    				<f:facet name="header">Description</f:facet>
-		    				<center> #{o[2]} </center>
+		    				<center> <h:outputText value="#{o[2]}" /> </center>
 		    			</h:column>
 		    			
 		    			<h:column>
 		    				<f:facet name="header">Upload Date</f:facet>
-		    				<center> #{o[3]} </center>
+		    				<center> <h:outputText value="#{o[3]}" /> </center>
 		    			</h:column>
 		    			
 		    			<h:column>
 		    				<f:facet name="header">Creator UID</f:facet>
-		    				<center> #{o[4]} </center>
+		    				<center> <h:outputText value="#{o[4]}" /> </center>
 		    			</h:column>
 		    			
 		    			<h:column>
 		    				<f:facet name="header">Material Filename</f:facet>
-		    				<center> #{o[5]} </center>
+		    				<center> <h:outputText value="#{o[5]}" /> </center>
 		    			</h:column>
 		    			
 		    			<h:column>
 		    				<f:facet name="header">Course ID</f:facet>
-		    				<center> #{o[6]} </center>
+		    				<center> <h:outputText value="#{o[6]}" /> </center>
 		    			</h:column>
 		    			
-		    		</h:dataTable>
-
+		    			<h:column>
+		    				<f:facet name="header">Download</f:facet>
+		    				<h:commandButton value="\/" action="#{materialStudentBean.downloadPage}" class="button-style">
+		    				
+		    				<f:setPropertyActionListener target="#{materialStudentBean.fileName}" value="#{o[5]}" />
+		    				
+		    				</h:commandButton>
+		    			</h:column>
+		    			
+		    		</t:dataTable>
+		    		
 				</h:form>    
        		</f:view>
        		

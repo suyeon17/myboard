@@ -1,3 +1,11 @@
+/*
+ * MyBoard- Teacher Materials
+ * Database access to course material such as Lecture Notes and File Uploading 
+ * 
+ * Database access: good
+ * File uploading: good
+ */
+
 package com.myboard.bean;
 
 import java.io.IOException;
@@ -37,7 +45,7 @@ public class MaterialTeacherBean implements Serializable {
 	CourseUsers cu;
 	
 	private UploadedFile upFile;
-	
+		
 
 	public MaterialTeacherBean() {
 		c = new Courses();
@@ -58,20 +66,23 @@ public class MaterialTeacherBean implements Serializable {
 		 
 
 		   for(int i=0; i<l.size(); i++){
-			   String row[] = new String[7];
-			   CourseMaterial c = (CourseMaterial) l.get(i);
+			   String rowData[] = new String[7];
+			   CourseMaterial courseMaterial = (CourseMaterial) l.get(i);
 		   
 			   // Get only data relevant to current User 
-			   if(c.getCreator().getCourseUid().equals(getCreator())){
-				   row[0] = c.getCourseMaterialId().toString();
-				   row[1] = c.getTitle();
-				   row[2] = c.getDescription();
-				   row[3] = c.getUploadDate().toString();
-				   row[4] = c.getCreator().getCourseUid().toString();
-				   row[5] = c.getMaterialFilename();
-				   row[6] = c.getCourse().getCourseId().toString();
+			   if(courseMaterial.getCreator().getCourseUid().equals(getCreator())){
+				   
+				   // Fetch row information
+				   rowData[0] = courseMaterial.getCourseMaterialId().toString();
+				   rowData[1] = courseMaterial.getTitle();
+				   rowData[2] = courseMaterial.getDescription();
+				   rowData[3] = courseMaterial.getUploadDate().toString();
+				   rowData[4] = courseMaterial.getCreator().getCourseUid().toString();
+				   rowData[5] = courseMaterial.getMaterialFilename();
+				   rowData[6] = courseMaterial.getCourse().getCourseId().toString();
 		
-				   dataList.add(row);
+				   // Populate list with database row information
+				   dataList.add(rowData);
 			   }
 		   }
 		}
@@ -92,7 +103,7 @@ public class MaterialTeacherBean implements Serializable {
         
         /*******************************************************************************************/
         // Change to specific file path
-        String filePath = "C:\\Users\\J\\Desktop\\Material\\" + getCourse()+"\\"+fileName;
+        String filePath = System.getProperty("user.home")+"\\Desktop\\Material\\" + getCourse()+"\\"+fileName;
         /*******************************************************************************************/
 
         setMaterialFilename(fileName);

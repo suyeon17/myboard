@@ -2,6 +2,8 @@ package com.myboard.bean;
 
 import java.io.Serializable;
 
+import javax.faces.context.FacesContext;
+
 import com.myboard.business.User;
 import com.myboard.business.UserSession;
 
