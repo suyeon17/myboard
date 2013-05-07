@@ -25,7 +25,7 @@ import com.myboard.dao.CourseMaterial;
 import com.myboard.dao.CourseUsers;
 import com.myboard.dao.Courses;
 
-
+// MaterialTeacherBean interacts with courseMaterialTeacher.xhtml allows teachers to view/upload materials
 @ManagedBean
 public class MaterialTeacherBean implements Serializable {
 
@@ -39,29 +39,31 @@ public class MaterialTeacherBean implements Serializable {
 	private String materialFilename;
 	private int course;
 	UserSession userSession;
-	Courses c;
+	Courses courses;
 	 ArrayList<String[]> dataList = new ArrayList<String[]>();
 	 
-	CourseUsers cu;
+	CourseUsers courseUsers;
 	
 	private UploadedFile upFile;
 		
 
 	public MaterialTeacherBean() {
-		c = new Courses();
-		cu = new CourseUsers();
 		
-		c.setCourseId(1);
-		cu.setCourseUid(1);
+		// Testing...user currently logged in user later
+		courses = new Courses();
+		courseUsers = new CourseUsers();
+		
+		courses.setCourseId(1);
+		courseUsers.setCourseUid(1);
 
-		setCourse(c);
-		setCreator(cu);		
+		setCourse(courses);
+		setCreator(courseUsers);		
 	}
 	
 	// Read database for user's course materials
 	public void getList() {
 		  
-		   Material mat = new Material(cu);
+		   Material mat = new Material(courseUsers);
 		   List<?> l = mat.readAllMaterial();
 		 
 
@@ -92,7 +94,7 @@ public class MaterialTeacherBean implements Serializable {
 		return ("uploadFile");
 	}
 
-	// Upload a file and write to database
+	// Upload a file to the server and write to database
     public String upload() throws IOException {
         String fileName = FilenameUtils.getName(upFile.getName());
         String contentType = upFile.getContentType();
@@ -129,8 +131,9 @@ public class MaterialTeacherBean implements Serializable {
         return "fileUploaded";
     }
     
-    // Write uploaded file into database
+    // Write uploaded file into database, uses business class Material as intermediary between bean and database 
     public void createMaterial() {
+    	// Get instance of business class
 	    Material material = new Material();
 	  
 	    CourseUsers cu = new CourseUsers();
@@ -139,6 +142,7 @@ public class MaterialTeacherBean implements Serializable {
 	    Courses c = new Courses();
 	    c.setCourseId(course);
 	    
+	    // Get data from business class
 	    material.setCourse(c);
 		material.setCourseMaterialId(this.courseMaterialId);
 		material.setTitle(this.title);

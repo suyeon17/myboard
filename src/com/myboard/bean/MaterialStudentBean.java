@@ -29,7 +29,7 @@ import com.myboard.dao.CourseMaterial;
 import com.myboard.dao.CourseUsers;
 import com.myboard.dao.Courses;
 
-
+// MaterialStudentBean interacts with courseMaterialStudent.xhtml, allows students to view/download materials
 @ManagedBean
 public class MaterialStudentBean  implements Serializable {
 
@@ -43,29 +43,31 @@ public class MaterialStudentBean  implements Serializable {
 	private String materialFilename;
 	private int course;
 	UserSession userSession;
-	Courses c;
+	Courses courses;
 	ArrayList<String[]> dataList = new ArrayList<String[]>();
 	RandomAccessFile downFile;
 	private String fileName;
-	CourseUsers cu;
+	CourseUsers courseUsers;
 	
 	
 	public MaterialStudentBean() {
-		c = new Courses();
-		cu = new CourseUsers();
 		
-		c.setCourseId(1);
-		cu.setCourseUid(1);
+		// Testing..., use currently logged in user later
+		courses = new Courses();
+		courseUsers = new CourseUsers();
+		
+		courses.setCourseId(1);
+		courseUsers.setCourseUid(1);
 
-		setCourse(c);
-		setCreator(cu);
+		setCourse(courses);
+		setCreator(courseUsers);
 		
 	}
 	
 	// Read database for user's course materials
 	public void getList() {
        
-		   Material mat = new Material(cu);
+		   Material mat = new Material(courseUsers);
 		   
 		   // Set all database information in a list
 		   List<?> l = mat.readAllMaterial();
@@ -118,11 +120,13 @@ public class MaterialStudentBean  implements Serializable {
          }  
          
         response.reset();  
-         response.setBufferSize(DEFAULT_BUFFER_SIZE);  
+         response.setBufferSize(DEFAULT_BUFFER_SIZE);
+         
+         // Set what type of file you will download
         response.setContentType("application/xml");  
          response.setHeader("Content-Length", String.valueOf(file.length()));  
          
-         // Save as prompt
+         // Prompt user with save-as dialog
          response.setHeader("Content-Disposition", "attachment;filename=\"" + file.getName() + "\"");  
          
          BufferedInputStream input = null;  
@@ -146,7 +150,7 @@ public class MaterialStudentBean  implements Serializable {
          context.responseComplete();  
 	}
     
-    // Write uploaded file into database
+    // Write uploaded file into database, uses business class Material as intermediary between bean and database 
     public void createMaterial() {
 	    Material material = new Material();
 	  
