@@ -29,7 +29,7 @@ public class MessageRecipientDao extends BaseDao {
 		}
 	}
 	
-	public MessageRecipient read(String id) {
+	public MessageRecipient read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		MessageRecipient instance = null;
 		

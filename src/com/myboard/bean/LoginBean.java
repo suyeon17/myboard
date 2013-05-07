@@ -47,7 +47,7 @@ public class LoginBean implements Serializable {
 	public String login(){
 		User user = new User(this.username);
 		user.readUser();
-		
+
 		if(!user.getFirstName().isEmpty() && !user.getLastName().isEmpty() && !user.getPassword().isEmpty()){
 			if(this.password.equals(user.getPassword())){
 				userSession.setUser(user);

@@ -16,7 +16,6 @@ public class AssignmentsDao extends BaseDao{
 
 	public void create(Assignments transientInstance) {
 		log.debug("creating " + entitySimpleName + " instance");
-		
 		try {
 			super.create(transientInstance);
 			log.debug("creating " + entitySimpleName + " successful");
@@ -28,7 +27,7 @@ public class AssignmentsDao extends BaseDao{
 		}
 	}
 	
-	public Assignments read(String id) {
+	public Assignments read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		Assignments instance = null;
 		

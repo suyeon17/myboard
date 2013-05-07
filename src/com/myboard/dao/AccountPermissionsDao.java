@@ -28,7 +28,7 @@ public class AccountPermissionsDao extends BaseDao {
 		}
 	}
 	
-	public AccountPermissions read(String id) {
+	public AccountPermissions read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AccountPermissions instance = null;
 		

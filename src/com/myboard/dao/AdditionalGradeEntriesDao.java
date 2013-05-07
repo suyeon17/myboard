@@ -28,7 +28,7 @@ public class AdditionalGradeEntriesDao extends BaseDao {
 		}
 	}
 	
-	public AdditionalGradeEntries read(String id) {
+	public AdditionalGradeEntries read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AdditionalGradeEntries instance = null;
 		

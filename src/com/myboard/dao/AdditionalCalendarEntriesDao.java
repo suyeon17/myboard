@@ -28,7 +28,7 @@ public class AdditionalCalendarEntriesDao extends BaseDao {
 		}
 	}
 	
-	public AdditionalCalendarEntries read(String id) {
+	public AdditionalCalendarEntries read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AdditionalCalendarEntries instance = null;
 		

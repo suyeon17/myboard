@@ -28,7 +28,7 @@ public class AssignmentSubmissionDao extends BaseDao{
 		}
 	}
 	
-	public AssignmentSubmission read(String id) {
+	public AssignmentSubmission read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AssignmentSubmission instance = null;
 		

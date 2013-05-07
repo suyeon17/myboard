@@ -28,7 +28,7 @@ public class AssignmentTypesDao extends BaseDao {
 		}
 	}
 	
-	public AssignmentTypes read(String id) {
+	public AssignmentTypes read(int id) {
 		log.debug("reading " + entitySimpleName + " instance with id: " + id);
 		AssignmentTypes instance = null;
 		

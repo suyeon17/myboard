@@ -2,6 +2,8 @@ package com.myboard.dao;
 
 // Generated Mar 13, 2013 12:50:36 AM by Hibernate Tools 4.0.0
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,6 +15,8 @@ public class Assignments implements java.io.Serializable {
 
 	private static final long serialVersionUID = -6312664479960794538L;
 
+	public static final String DIR_NAME = "Assignments/";
+	
 	private Integer assignmentId;
 	private Courses course;
 	private String title;
@@ -28,6 +32,8 @@ public class Assignments implements java.io.Serializable {
 	private CourseUsers creator;
 	private Date visibleDate;
 	private Set<AssignmentSubmission> assignmentSubmissions = new HashSet<AssignmentSubmission>(0);
+	
+	private ArrayList<AssignmentFileParser.Question> questions;
 	
 	public Assignments() {
 	}
@@ -189,5 +195,48 @@ public class Assignments implements java.io.Serializable {
 	public void setAssignmentSubmissions(
 			Set<AssignmentSubmission> assignmentSubmissions) {
 		this.assignmentSubmissions = assignmentSubmissions;
+	}
+	
+	protected String getAbsolutePath(){
+		if(course == null)	return null;
+		return course.getAbsolutePath()+DIR_NAME;
+	}
+	
+	/*
+	 * Returns the questions for a previously created assignment
+	 */
+	public ArrayList<AssignmentFileParser.Question> getQuestions(){
+		//Lazy loading of Assignment Questions
+		if(this.questions == null){
+			String path = getAbsolutePath();
+			if(path == null) return null;
+			try{
+				this.questions = AssignmentFileParser.getFromXML(path+this.assignmentId.toString()+".xml");
+			}catch(Exception e){
+				return null;
+			}
+		}
+		return this.questions;
+	}
+	
+	
+	public void setQuestions(ArrayList<AssignmentFileParser.Question> questions){
+		this.questions = questions;
+	}
+	
+	/*
+	 * Writes an assignment to an XML file
+	 * Must be called after the assignment is already written to the database
+	 * so that this.assignmentId is instantiated
+	 */
+	public boolean writeAssignment(){
+		String path = getAbsolutePath();
+		if(this.questions == null || this.questions.size() < 1 || path == null) return false;
+		try {
+			AssignmentFileParser.writeToXML(path+this.assignmentId.toString()+".xml", this.questions);
+		} catch (IOException e) {
+			return false;
+		}
+		return true;
 	}
 }
