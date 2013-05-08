@@ -98,7 +98,7 @@ public class Course implements Serializable {
 		//this.courseRootDirectory = "/" + this.courseId + "/";
 		this.creationDate = new Date();
 		CoursesDao dao = new CoursesDao();
-		Courses courses = dao.read(this.courseId);
+		Courses courses = dao.read(Integer.parseInt(this.courseId));
 		
 		if(courses != null)
 		{
@@ -164,7 +164,7 @@ public class Course implements Serializable {
 		CourseInfoDao dao2 = new CourseInfoDao();
 		CourseSectionDao dao3 = new CourseSectionDao();
 
-		Courses courses = dao.read(this.courseId);
+		Courses courses = dao.read(Integer.parseInt(this.courseId));
 		CourseInfo courseInfo = courses.getSection().getCourseInfo();
 		CourseSection courseSection = courses.getSection();
 
@@ -207,7 +207,7 @@ public class Course implements Serializable {
 	public void readCourse() {
 
 		CoursesDao dao = new CoursesDao();
-		Courses courses = dao.read(this.getCourseId());
+		Courses courses = dao.read(Integer.parseInt(this.courseId));
 
 		if (courses != null) {
 			this.setSection(courses.getSection().getSection());
