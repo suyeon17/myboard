@@ -331,6 +331,47 @@ ul.style2 a:hover {
 }
 
 
+a:link { text-decoration:none; }
+a:visited { text-decoration:line-through; }
+a:hover { text-decoration:underline; }
+a:active { text-decoration:underline; }
+a:focus { text-decoration:blink; }
+
+.grades-table{   
+	border-collapse:collapse;
+	border: 16px;
+}
+ 
+.grades-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+	text-decoration: none;
+}
+
+.grades-table-header:link{
+	text-decoration: none;
+}
+ 
+.grades-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+ 
+.grades-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
+#comments{
+	border: 16px;
+	width: 300px
+}
+
+
 
 
 

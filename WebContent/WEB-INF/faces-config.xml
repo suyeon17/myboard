@@ -64,6 +64,31 @@
             <value>#{userSession}</value>
         </managed-property>
     </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>simpleList</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.SimpleList</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>parameter</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.Parameter</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>storage</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.Storage</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>gradeList</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.GradeList</managed-bean-class>
+    	<managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+    	<managed-bean-name>updateGrade</managed-bean-name>
+    	<managed-bean-class>com.myboard.bean.UpdateGrade</managed-bean-class>
+    	<managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
     
     <managed-bean>
         <managed-bean-name>materialTeacherBean</managed-bean-name>

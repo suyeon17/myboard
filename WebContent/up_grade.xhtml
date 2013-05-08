@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:t="http://myfaces.apache.org/tomahawk">
+                      
+    <h:body>
+    	 
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    	<ui:define name="content">
+    	<h2>Enter Grade</h2>
+    			<f:view>
+    			    <h:form>
+    			        <h:panelGrid columns="1">
+			                <h:panelGroup>
+			                    <h:outputLabel for="createGrade" value="Title: "/>
+			                    <h:inputText id="createtitle" value="#{updateGrade.title}" required="true" size="8" maxlength="20"/> 
+			                    <t:message for="createGrade" styleClass="error" showDetail="true" showSummary="false" />
+                                <h:commandButton action="#{updateGrade.createGrade}" value="Create Grade" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createGrade" value="Points Possible: "/>
+			                    <h:inputText id="createPtsPoss" value="#{updateGrade.pointsPossible}" size="20" maxlength="20"/> 
+			                    <t:message for="createGrade" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createGrade" value="Points Earned: "/>
+			                    <h:inputText id="createPtsEarn" value="#{updateGrade.pointsEarned}" size="35" maxlength="35"/> 
+			                    <t:message for="createGrade" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createGrade" value="Assignment Id: "/>
+			                    <h:inputText id="createAssignmentId" value="#{updateGrade.assignmentId}" size="35" maxlength="35"/> 
+			                    <t:message for="createGrade" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>
+			                <h:panelGroup>
+			                    <h:outputLabel for="createGrade" value="Course Id: "/>
+			                    <h:inputText id="createCourseId" value="#{updateGrade.courseId}" size="45" maxlength="45"/> 
+			                    <t:message for="createGrade" styleClass="error" showDetail="true" showSummary="false" />
+                                <f:verbatim>&nbsp;</f:verbatim>
+			                </h:panelGroup>			                
+  			             </h:panelGrid>
+    			        <h:outputText value="&lt;br/&gt;" escape="false" />    			        
+    			        <br/>
+    			        <h:link value="Take me to TestUser Page" outcome="testUser" />
+    			    </h:form>
+    			</f:view>
+    	</ui:define>		
+  		</ui:composition>
+    	
+    </h:body>
+
+</html>

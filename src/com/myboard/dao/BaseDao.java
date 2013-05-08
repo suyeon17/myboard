@@ -80,7 +80,7 @@ public class BaseDao {
 		try {
 			session = this.sessionFactory.getCurrentSession();
 			transaction = session.beginTransaction();
-			Object instance = session.get(entityClassFullName, id);
+			Object instance = session.get(entityClassFullName, Integer.parseInt(String.valueOf(id)));
 			transaction.commit();
 			
 			if(instance == null){
@@ -95,7 +95,7 @@ public class BaseDao {
 			if(session != null && session.isOpen()){session.close();}
 		}
 	}
-
+	
 	public Object read(String entityClassFullName, Integer id) throws EntityNotFoundException{		
 		Session session = null;
 		Transaction transaction = null;
@@ -118,6 +118,7 @@ public class BaseDao {
 			if(session != null && session.isOpen()){session.close();}
 		}
 	}
+
 	public List<?> readAll(String entityClassFullName, Object o) throws EntityNotFoundException{
 		Session session = null;
 		Transaction transaction = null;

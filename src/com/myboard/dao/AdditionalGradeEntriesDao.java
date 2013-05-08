@@ -43,6 +43,22 @@ public class AdditionalGradeEntriesDao extends BaseDao {
 		}
 		return instance;
 	}
+	
+	public AdditionalGradeEntries read(Integer id) {
+		log.debug("reading " + entitySimpleName + " instance with id: " + id);
+		AdditionalGradeEntries instance = null;
+		
+		try {
+			instance = (AdditionalGradeEntries)super.read(entityFullName, id);
+			log.debug(entitySimpleName + " read successful, instance found");
+		} catch(EntityNotFoundException ex){
+			log.error(entitySimpleName + " read successful, no instance found", ex);
+		} catch (RuntimeException re) {
+			log.error(entitySimpleName + " read failed", re);
+			throw re;
+		}
+		return instance;
+	}
 
 	@SuppressWarnings("unchecked")
 	public List<AdditionalGradeEntries> readAll(AdditionalGradeEntries instance) {

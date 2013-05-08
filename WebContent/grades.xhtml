@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:ui="http://java.sun.com/jsf/facelets"
+        xmlns:t="http://myfaces.apache.org/tomahawk">
+                      
+    <h:body>
+    	 
+    	<ui:composition template="/template/common/commonLayout.xhtml">
+    	<ui:define name="content">
+    	<h2>Grades</h2>    			
+    			<h:form>    					
+       					<t:dataTable id="data"
+                        styleClass="grades-table"
+    					headerClass="grades-table-header"
+    					rowClasses="grades-table-odd-row,grades-table-even-row"
+                        columnClasses="standardTable_Column,standardTable_ColumnCentered,standardTable_Column"
+                        var = "grade"
+                        sortable="true"
+                		value="#{gradeList.initGrades(userSession.userId)}"
+                		preserveDataModel="true"
+               			>
+                                                		
+                     	<h:column name="title">
+                   		     <f:facet name="header">                    		
+                   			     <h:commandLink action="#{gradeList.sortByTitle}"> <h:outputText value="Title"/> </h:commandLink>
+                   		     </f:facet>                       
+                             <h:commandLink>
+    							<f:setPropertyActionListener target="#{storage.temp}" value="#{grade.comments}" />
+    							#{grade.title}
+							 </h:commandLink>         
+                        </h:column>
+
+                        <h:column>
+                             <f:facet name="header">
+                                  <h:commandLink action="#{gradeList.sortByPointsEarned}"> <h:outputText value="Points Earned"/>  </h:commandLink>
+                             </f:facet> 
+                             #{grade.pointsEarned}  
+                        </h:column>
+
+                        <h:column>
+                             <f:facet name="header">
+                                   <h:commandLink action="#{gradeList.sortByPointsPossible}"> <h:outputText value="Points Possible"/>  </h:commandLink>
+                             </f:facet> 
+                             #{grade.pointsPossible}                  
+                        </h:column>
+                   
+                        <h:column>
+                            <f:facet name="header">
+                                  <h:commandLink action="#{gradeList.sortByAssignmentId}"> <h:outputText value="Assignment Id"/>  </h:commandLink>
+                            </f:facet> 
+                             #{grade.assignmentId} 
+                        </h:column>
+                                      
+                        <h:column>
+                            <f:facet name="header">
+                                  <h:commandLink action="#{gradeList.sortByCourseId}"> <h:outputText value="Course Id"/> </h:commandLink>
+                            </f:facet> 
+                            #{grade.courseId} 
+                        </h:column>
+                </t:dataTable>
+                
+                <br/>
+                <br></br>
+                <b><h:outputText value="Total Points Earned: #{gradeList.totalPointsEarned}" /></b> 
+                <br></br>
+                <b><h:outputText value="Total Points Possible: #{gradeList.totalPointsPossible}" /></b>
+                <br></br>
+                <br></br>
+                <h:panelGrid columns="1" border="1">
+    				<h:panelGroup>Comments: #{storage.temp}</h:panelGroup>
+				</h:panelGrid>
+                <br></br>
+             </h:form>
+    	</ui:define>		
+  		</ui:composition>
+    	
+    </h:body>
+
+</html>
