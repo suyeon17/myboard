@@ -84,7 +84,7 @@ public class BaseDao {
 			transaction.commit();
 			
 			if(instance == null){
-				throw new EntityNotFoundException(entityClassFullName + " not foe + " not found for id = " + id);
+				throw new EntityNotFoundException(entityClassFullName + " not found for id = " + id);
 			}
 			
 			return instance;
