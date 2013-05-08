@@ -24,7 +24,7 @@ public class ViewAccountsDirector implements Serializable {
 	{
 		UsersDao dao = new UsersDao();
 		
-		return dao.readAll();
+		return dao.readAll(null);
 	}
 	//filters users by teachers
 	public ArrayList<Users> getTeachers()
