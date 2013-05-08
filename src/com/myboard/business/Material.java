@@ -58,7 +58,7 @@ public class Material {
 		CourseMaterialDao dao = new CourseMaterialDao();
 		
 		//Note: creatorUid is an int, CourseMaterialDao read() takes a string. Which should I change? for now use Integer.toString() to properly read
-		CourseMaterial cm = dao.read(String.valueOf(this.creator));
+		CourseMaterial cm = dao.read(this.creator.getCourseUid().intValue());
 		
 		
 		if(cm != null){
