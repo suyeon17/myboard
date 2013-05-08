@@ -45,7 +45,7 @@ public class AssignUsersBean {
 
 	private com.myboard.dao.Courses getCoursesObjById() {
 		CoursesDao dao = new CoursesDao();
-		return dao.read(courseId.toString());
+		return dao.read(courseId);
 	}
 
 	private com.myboard.dao.Users getUserObjById() {
